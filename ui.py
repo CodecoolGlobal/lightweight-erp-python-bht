@@ -71,6 +71,10 @@ def print_menu(title, list_options, exit_message):
     """
 
     # your code
+    print(title)
+    for item, item_no in enumerate(list_options):
+        print('\t(' + str(item_no) + ') ' + item)
+    print('\t(0) ' + exit_message)
 
 
 def get_inputs(list_labels, title):
