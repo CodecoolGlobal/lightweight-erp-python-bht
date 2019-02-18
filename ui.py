@@ -16,16 +16,15 @@
  
  
 def print_table(table, title_list):
-    print('/-----------------------------------\')
+    print('/-----------------------------------\\')
     for item in title_list:
         for j in item:
-            print('|',{item[j]},' '*(20-len(item[j])),'|'))
+            print('|',{item[j]},' '*(20-len(item[j])),'|')
         print('\n')
         print('\-----------------------------------/')
 
 
 def print_result(result, label):
-#
 #    Displays results of the special functions.
 #
 #    Args:
