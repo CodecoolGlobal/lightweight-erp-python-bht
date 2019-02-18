@@ -1,20 +1,3 @@
-# User Interface (UI) module
-# Prints table with data.
-#    Example:
-#        /-----------------------------------\
-#        |   id   |      title     |  type   |
-#        |--------|----------------|---------|
-#        |   0    | Counter strike |    fps  |
-#        |--------|----------------|---------|
-#        |   1    |       fo       |    fps  |
-#        \-----------------------------------/
-#    Args:
-#        table (list): list of lists - table to display
-#        title_list (list): list containing table headers
-#    Returns:
-#    None: This function doesn't return anything it only prints to console.
- 
- 
 def print_table(table, title_list):
     print('/-----------------------------------\\')
     for item in title_list:
@@ -31,7 +14,7 @@ def print_result(result, label):
 def print_menu(title, list_options, exit_message):
     print(title)
     for item_no, item in enumerate(list_options):
-        print('\t(' + str(item_no + ') ' + item)
+        print('\t(' + str(item_no) + ') ' + item)
     print('\t(0) ' + exit_message)
 
 
