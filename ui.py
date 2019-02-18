@@ -22,14 +22,10 @@
  
 def print_table(table, title_list):
     print('/-----------------------------------\')
-for ithen in title_list:
-    print('|',{ithem[0]},' '*(10-len(ithem[0])),'|',
-    item[1],' '*(19-len(ithem[1])),'|',
-    item[2],' '*(19-len(ithem[2])),'|',
-    item[3],' '*(19-len(ithem[3])),'|',
-    item[4],' '*(19-len(ithem[4])),'|',
-    item[5],' '*(19-len(ithem[5])),'|',
-    item[6],' '*(19-len(ithem[6])),'|',)
+for item in title_list:
+    for j in item:
+        print('|',{item[j]},' '*(20-len(item[j])),'|'))
+    print('\n')
     print('\-----------------------------------/')
 
 
