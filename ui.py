@@ -1,7 +1,4 @@
 """ User Interface (UI) module """
-
-
-def print_table(table, title_list):
     """
     Prints table with data.
 
@@ -22,7 +19,16 @@ def print_table(table, title_list):
         None: This function doesn't return anything it only prints to console.
     """
 
-    # your goes code
+    
+def print_table(table, title_list):
+    print('/-----------------------------------\')
+    print('| id | title | type |')
+    print('|--------|----------------|---------|')
+    print('| id | title | type |')
+    print('|--------|----------------|---------|')
+    print('| id | title | type |')
+    print('\-----------------------------------/')
+
 
 
 def print_result(result, label):
