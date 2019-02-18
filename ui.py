@@ -14,7 +14,7 @@ def print_result(result, label):
 def print_menu(title, list_options, exit_message):
     print(title)
     for item_no, item in enumerate(list_options):
-        print('\t(' + str(item_no) + ') ' + item)
+        print('\t(' + str(item_no + 1) + ') ' + item)
     print('\t(0) ' + exit_message)
 
 
