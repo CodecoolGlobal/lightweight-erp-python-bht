@@ -83,7 +83,7 @@ def get_inputs(list_labels, title):
     inputs = []
     print(title)
     for labels in list_labels:
-        item = input(list_labels[labels])
+        item = input(labels+' ')
         inputs.append(item)
 
     return inputs
