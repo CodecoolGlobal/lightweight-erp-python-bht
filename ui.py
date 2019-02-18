@@ -29,4 +29,4 @@ def get_inputs(list_labels, title):
 
 
 def print_error_message(message):
-    pass
+    print('Error: ' + message)
