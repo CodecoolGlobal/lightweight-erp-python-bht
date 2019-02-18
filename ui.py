@@ -16,12 +16,12 @@
  
  
 def print_table(table, title_list):
-    print('/-----------------------------------\')
+    print('/-----------------------------------\\')
     for item in title_list:
         for j in item:
-            print('|',{item[j]},' '*(20-len(item[j])),'|'))
+            print('|', {item[j]}, ' '*(20-len(item[j])), '|')
         print('\n')
-        print('\-----------------------------------/')
+        print('\\-----------------------------------/')
 
 
 def print_result(result, label):
@@ -59,8 +59,8 @@ def print_menu(title, list_options, exit_message):
 #        None: This function doesn't return anything it only prints to console.
 # your code
     print(title)
-    for item, item_no in enumerate(list_options):
-        print('\t(' + str(item_no) + ') ' + item)
+    for item_no, item in enumerate(list_options):
+        print('\t(' + str(item_no + ') ' + item)
     print('\t(0) ' + exit_message)
 
 
@@ -99,3 +99,4 @@ def print_error_message(message):
 #        None: This function doesn't return anything it only prints to console.
 #
 #     your code
+    print('Error: ' + message),
