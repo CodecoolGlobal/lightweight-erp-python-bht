@@ -19,7 +19,19 @@ def generate_random(table):
     """
 
     generated = ''
-
     # your code
 
+    passphrase_min_length = 2
+    nums = '0123456789'
+    letters = 'abcdefghijklmnopqrstuvwxyz'
+    special_chars = "~!@#$%^&*()}{][+-_=/\\:\"'|,.?><"
+    # must_contain [letters, letters, special_chars, nums]
+
+    ID_num = [(random.choice(nums)) for x in range(0, passphrase_min_length)]
+    ID_letters_upper = [(random.choice(letters.upper())) for x in range(0, passphrase_min_length)]
+    ID_letters_lower = [(random.choice(letters)) for x in range(0, passphrase_min_length)]
+    ID_special_chars = [(random.choice(special_chars)) for x in range(0, passphrase_min_length)]
+
+    ID = ID_num + ID_letters_upper + ID_letters_lower + ID_special_chars
+    generated = ''.join(ID)
     return generated
