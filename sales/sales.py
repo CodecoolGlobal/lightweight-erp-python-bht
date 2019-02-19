@@ -29,7 +29,42 @@ def start_module():
         None
     """
 
-    # your code
+    while True:
+        handle_menu()
+        try:
+            if choose() == 0:
+                break
+        except KeyError as err:
+            ui.print_error_message(str(err))
+
+
+def choose():
+    inputs = ui.get_inputs(["Please enter a number: "], "")
+    option = inputs[0]
+    table = data_manager.get_table_from_file('sales/sales.csv')
+    if option == "1":
+        show_table(table)
+    elif option == "2":
+        add(table)
+    elif option == "3":
+        id_ = ui.get_inputs(['Please enter an id: '], '')
+        remove(table, id_[0])
+    elif option == "4":
+        id_ = ui.get_inputs(['Please enter an id: '], '')
+        update(table, id_[0])
+    elif option == "0":
+        return 0
+    else:
+        raise KeyError("There is no such option.")
+
+
+def handle_menu():
+    options = ["Show table",
+               "Add ithem",
+               "Remove ithem",
+               "Update ithem"]
+
+    ui.print_menu("Sales", options, "Back to main menu")
 
 
 def show_table(table):
@@ -43,7 +78,7 @@ def show_table(table):
         None
     """
 
-    # your code
+    ui.print_table(table, ['id', 'title', 'price', 'month', 'day', 'year'])
 
 
 def add(table):
@@ -57,7 +92,12 @@ def add(table):
         list: Table with a new record
     """
 
-    # your code
+    id = '1'
+    addnew = ui.get_inputs(
+        ['title', 'price', 'month', 'day', 'year'], 'Sales add')
+    addnew.insert(0, id)
+    table.append(addnew)
+    data_manager.write_table_to_file('sales/sales.csv', table)
 
     return table
 
@@ -74,7 +114,10 @@ def remove(table, id_):
         list: Table without specified record.
     """
 
-    # your code
+    for index in range(len(table)):
+        if table[index][0] == id_:
+            table.pop(index)
+        data_manager.write_table_to_file('sales/sales.csv', table)
 
     return table
 
@@ -91,7 +134,13 @@ def update(table, id_):
         list: table with updated record
     """
 
-    # your code
+    for index in range(len(table)):
+        if table[index][0] == id_:
+            addnew = ui.get_inputs(
+                ['title', 'price', 'month', 'day', 'year'], 'Sales update')
+            addnew.insert(0, id_)
+            table[index] = addnew
+            data_manager.write_table_to_file('sales/sales.csv', table)
 
     return table
 
@@ -114,7 +163,8 @@ def get_lowest_price_item_id(table):
     # your code
 
 
-def get_items_sold_between(table, month_from, day_from, year_from, month_to, day_to, year_to):
+def get_items_sold_between(table, month_from, day_from,
+                           year_from, month_to, day_to, year_to):
     """
     Question: Which items are sold between two given dates? (from_date < sale_date < to_date)
 

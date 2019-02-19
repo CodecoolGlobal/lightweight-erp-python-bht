@@ -75,7 +75,8 @@ def show_table(table):
     Returns:
         None
     """
-    ui.print_table(table, ['1', '2', '3', '4', '5'])
+    ui.print_table(table, ['id', 'name', 'manufacturer',
+                           'purchase year', 'durability'])
 
 
 def add(table):
@@ -88,12 +89,14 @@ def add(table):
     Returns:
         list: Table with a new record
     """
+
     id = '1'
-    addnew = ui.get_inputs(['name','manufacturer','purchase year','durability'], 'Inventory add')
+    addnew = ui.get_inputs(
+        ['name', 'manufacturer', 'purchase year', 'durability'], 'Inventory add')
     addnew.insert(0, id)
     table.append(addnew)
     data_manager.write_table_to_file('inventory/inventory.csv', table)
-    
+
     return table
 
 
@@ -131,7 +134,8 @@ def update(table, id_):
 
     for index in range(len(table)):
         if table[index][0] == id_:
-            addnew = ui.get_inputs(['name', 'manufacturer', 'purchase year', 'durability'], 'Inventory update')
+            addnew = ui.get_inputs(
+                ['name', 'manufacturer', 'purchase year', 'durability'], 'Inventory update')
             addnew.insert(0, id_)
             table[index] = addnew
             data_manager.write_table_to_file('inventory/inventory.csv', table)
