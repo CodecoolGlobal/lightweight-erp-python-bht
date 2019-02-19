@@ -18,9 +18,14 @@
 
 
 def print_table(table, title_list):
-    print(' '.join(title_list))
+    print('\n\t/-----------------------------------\\')
+    print('\t' + '| ' + ' | '.join(title_list) + ' |')
+    print('\t|' + '-' * 10 + '|' + '---------------------------------|')
     for item in table:
-        print(' '.join(item))
+        print('\t|' + '-' * 10 + '|' + '---------------------------------|')
+        print('\t' + '| ' + ' | '.join(item) + ' |')
+    print('\t\\-----------------------------------/\n')
+
 
 '''
     Displays results of the special functions.
