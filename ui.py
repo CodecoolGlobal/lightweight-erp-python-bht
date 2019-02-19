@@ -21,7 +21,7 @@ def print_table(table, title_list):
     print('/-----------------------------------\\')
     for item in title_list:
         for j in item:
-            print('|',{item[j]},' '*(20-len(item[j])),'|')
+            print('|', {item[j]}, ' ' * (20 - len(item[j])), '|')
         print('\n')
         print('\\-----------------------------------/')
 
@@ -105,7 +105,7 @@ def get_inputs(list_labels, title):
     inputs = []
     print(title)
     for labels in list_labels:
-        item = input(labels+' ')
+        item = input(labels + ' ')
         inputs.append(item)
 
     return inputs
