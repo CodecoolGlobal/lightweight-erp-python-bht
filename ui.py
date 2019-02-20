@@ -53,7 +53,9 @@ def print_table(table, title_list):
 
 
 def print_result(result, label):
-    pass
+    print(label)
+    print(result)
+
 
 
 '''
@@ -79,7 +81,7 @@ def print_result(result, label):
 
 
 def print_menu(title, list_options, exit_message):
-    print(title)
+    print('\n' + title)
     for item_no, item in enumerate(list_options):
         print('\t(' + str(item_no + 1) + ') ' + item)
     print('\t(0) ' + exit_message)

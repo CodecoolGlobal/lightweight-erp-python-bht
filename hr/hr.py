@@ -27,7 +27,36 @@ def start_module():
     """
 
     # your code
+    while True:
+        handle_menu()
+        try:
+            if choose() == 0:
+                break
+        except KeyError as err:
+            ui.print_error_message(str(err))
 
+def choose():
+    inputs = ui.get_inputs(["Please enter a number: "], "")
+    hr_menu_options = inputs[0]
+    table = data_manager.get_table_from_file('hr/persons.csv')
+    if hr_menu_options == '1':
+        show_table(table)
+    elif hr_menu_options == '2':
+        add(table)
+    elif hr_menu_options == '3':
+        remove(table, ui.get_inputs(['id'], 'Which id you want removed? \n')[0])
+    elif hr_menu_options == '4':
+        update(table, ui.get_inputs(['id'], 'Which id you want updated? \n')[0])
+    elif hr_menu_options == '5':
+        get_oldest_person(table)
+    elif hr_menu_options == '6':
+        get_persons_closest_to_average(table)
+    elif hr_menu_options == '0':
+        return 0
+
+def handle_menu():
+    store_menu = ['Show Table', 'Add', 'Remove', 'Update', 'Oldest', 'Avg']
+    ui.print_menu('Store Menu', store_menu, 'Back to Main Menu')
 
 def show_table(table):
     """
@@ -41,7 +70,7 @@ def show_table(table):
     """
 
     # your code
-
+    ui.print_table(table, ['id', 'name', 'birth_year'])
 
 def add(table):
     """
@@ -55,7 +84,13 @@ def add(table):
     """
 
     # your code
-
+    id = common.generate_random(table)
+    addnew = ui.get_inputs(
+        ['name: ', 'birth year: '], 
+        'Adding entry to hr')
+    addnew.insert(0, id)
+    table.append(addnew)
+    data_manager.write_table_to_file('hr/persons.csv', table)
     return table
 
 
@@ -72,7 +107,10 @@ def remove(table, id_):
     """
 
     # your code
-
+    for index in range(len(table)):
+        if table[index][0] == id_:
+            table.pop(index)
+        data_manager.write_table_to_file('hr/persons.csv', table)
     return table
 
 
@@ -89,7 +127,14 @@ def update(table, id_):
     """
 
     # your code
-
+    for index in range(len(table)):
+        if table[index][0] == id_:
+            addnew = ui.get_inputs(
+                ['name: ', 'birth year: '], 
+                'Updating list of hr')
+            addnew.insert(0, id_)
+            table[index] = addnew
+            data_manager.write_table_to_file('hr/persons.csv', table)
     return table
 
 
@@ -108,6 +153,17 @@ def get_oldest_person(table):
     """
 
     # your code
+    oldest_name = []
+    oldest = 2000
+    for line in table:
+        if line[2] < str(oldest):
+            oldest_name.clear()
+            oldest = line[2]
+            oldest_name.append(line[1])
+        elif line[2] == str(oldest):
+            oldest = line[2]
+            oldest_name.append(line[1])
+    return ui.print_result(oldest_name, "The oldest is/are: \n")
 
 
 def get_persons_closest_to_average(table):
@@ -122,3 +178,19 @@ def get_persons_closest_to_average(table):
     """
 
     # your code
+    total = 0
+    dividor = 0
+    for line in table:
+        total += int(line[2])
+        dividor += 1
+    avg = total/dividor
+    diff = 1000
+    closest = []
+    for line in table:
+        if abs(int(line[2]) - avg) < diff:
+            closest.clear()
+            diff = abs(int(line[2]) - avg)
+            closest.append(line[1])
+        elif abs(int(line[2]) - avg) == diff:
+            closest.append(line[1])
+    return ui.print_result(closest, '\nClosest PEOPLE to average: ')
