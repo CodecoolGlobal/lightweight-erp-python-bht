@@ -92,7 +92,8 @@ def add(table):
 
     id = '1'
     addnew = ui.get_inputs(
-        ['name', 'manufacturer', 'purchase year', 'durability'], 'Inventory add')
+        ['name of item: ', 'manufacturer of item: ', 'purchase year of item: ', 'durability of item: '], 
+        'Adding item to Inventory')
     addnew.insert(0, id)
     table.append(addnew)
     data_manager.write_table_to_file('inventory/inventory.csv', table)
@@ -135,7 +136,8 @@ def update(table, id_):
     for index in range(len(table)):
         if table[index][0] == id_:
             addnew = ui.get_inputs(
-                ['name', 'manufacturer', 'purchase year', 'durability'], 'Inventory update')
+                ['name of item: ', 'manufacturer of item: ', 'purchase year of item: ', 'durability of item: '], 
+                'Updating item of Inventory')
             addnew.insert(0, id_)
             table[index] = addnew
             data_manager.write_table_to_file('inventory/inventory.csv', table)

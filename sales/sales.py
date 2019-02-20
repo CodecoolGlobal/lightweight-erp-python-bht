@@ -94,7 +94,8 @@ def add(table):
 
     id = '1'
     addnew = ui.get_inputs(
-        ['title', 'price', 'month', 'day', 'year'], 'Sales add')
+        ['title of item: ', 'price of item: ', 'month of item: ', 'day of item: ', 'year of item: '], 
+        'Adding item to Sales')
     addnew.insert(0, id)
     table.append(addnew)
     data_manager.write_table_to_file('sales/sales.csv', table)
@@ -137,7 +138,8 @@ def update(table, id_):
     for index in range(len(table)):
         if table[index][0] == id_:
             addnew = ui.get_inputs(
-                ['title', 'price', 'month', 'day', 'year'], 'Sales update')
+                ['title of item: ', 'price of item: ', 'month of item: ', 'day of item: ', 'year of item: '], 
+                'Updating item of Sales')
             addnew.insert(0, id_)
             table[index] = addnew
             data_manager.write_table_to_file('sales/sales.csv', table)
