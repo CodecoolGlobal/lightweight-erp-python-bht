@@ -29,7 +29,35 @@ def start_module():
     """
 
     # your code
+    while True:
+        handle_menu()
+        try:
+            choose()
+        except KeyError as err:
+            ui.print_error_message(str(err))
 
+
+def choose():
+    inputs = ui.get_inputs(["Please enter a number: "], "")
+    store_menu_options = inputs[0]
+    if store_menu_options == 1:
+        show_table(data_manager.get_table_from_file('games.csv'))
+    elif store_menu_options == 2:
+        add(data_manager.get_table_from_file('games.csv'))
+    elif store_menu_options == 3:
+        remove(data_manager.get_table_from_file('games.csv'), ui.get_inputs(['id', 'Which id you want removed? \n']))
+    elif store_menu_options == 4:
+        update(data_manager.get_table_from_file('games.csv'), ui.get_inputs(['id', 'Which id you want updated? \n']))
+    elif store_menu_options == 5:
+        get_counts_by_manufacturers(data_manager.get_table_from_file('games.csv'))
+    elif store_menu_options == 6:
+        get_counts_by_manufacturers(data_manager.get_table_from_file('games.csv'), ui.get_inputs(['manufacturer'], 'Which manufacturer are you interested in? \n'))
+    elif store_menu_options == 0:
+        return  # ???
+
+def handle_menu():
+    store_menu = ['Show Table', 'Add', 'Remove', 'Update', 'Count', 'Avg']
+    ui.print_menu('Store Menu', store_menu, 'Back to Main Menu')
 
 def show_table(table):
     """
@@ -41,8 +69,16 @@ def show_table(table):
     Returns:
         None
     """
-
+    '''
     # your code
+    games_csv = []
+    with open('games.csv', 'r') as f:
+        for line in f:
+            games_csv.append(line.rsplit(sep=';'))
+    # games_csv = [line.rsplit(sep=';') for line in f]
+    '''
+    games_title_list = ['id', 'title', 'manufacturer', 'price', 'in_stock']
+    ui.print_table(table, games_title_list)
 
 
 def add(table):
@@ -56,8 +92,14 @@ def add(table):
         list: Table with a new record
     """
 
-    # your code
-
+    # your code a \n mehetne a get_inputsba, és egy : is a dupla space helyett
+    gen_id = common.generate_random(data_manager.get_table_from_file('games.csv'))
+    input_parameters = ['title', 'manufacturer', 'price', 'in_stock']
+    add_line = []
+    add_line.append(gen_id)
+    add_line.extend(ui.get_inputs(input_parameters, 'Please enter the following: \n'))
+    table.append(add_line)
+    data_manager.write_table_to_file('games.csv', table)  # kell ez?
     return table
 
 
@@ -74,6 +116,10 @@ def remove(table, id_):
     """
 
     # your code
+    for line_no, line in enumerate(table):
+        if id_ in line:
+            table.remove(table[line_no])
+    data_manager.write_table_to_file('games.csv', table)  # kell ez?
 
     return table
 
@@ -91,7 +137,11 @@ def update(table, id_):
     """
 
     # your code
-
+    for line_no, line in enumerate(table):
+        if id_ in line:
+            updates = table.pop(table[line_no])
+            input_parameters = ['title', 'manufacturer', 'price', 'in_stock']
+            table.insert(line_no, ui.get_inputs(input_parameters, 'Please enter the updates: \n'))
     return table
 
 
@@ -110,7 +160,14 @@ def get_counts_by_manufacturers(table):
     """
 
     # your code
-
+    dict1 = {}
+    for line in table:
+        if line[2] in dict1.keys():
+            dict1[line[2]] += 1
+        else:
+            dict1[line[2]] = 1
+    
+    return dict1
 
 def get_average_by_manufacturer(table, manufacturer):
     """
@@ -125,3 +182,11 @@ def get_average_by_manufacturer(table, manufacturer):
     """
 
     # your code
+    dict1 = {}
+    count = 0
+    divider = 1
+    for line in table:
+        if line[2] in dict1.keys():
+            count += line[4]
+            divider += 1
+    return count/divider
