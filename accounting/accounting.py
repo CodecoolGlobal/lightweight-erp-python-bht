@@ -101,7 +101,11 @@ def add(table):
 
     id = common.generate_random(table)
     addnew = ui.get_inputs(
-        ['month: ', 'day: ', 'year: ', 'type (in=income, out= outflow): ', 'amount (of transaction in USD): '], 
+        ['month: ',
+         'day: ',
+         'year: ',
+         'type (in=income, out= outflow): ',
+         'amount (of transaction in USD): '],
         'Adding item to Accounting table')
     addnew.insert(0, id)
     table.append(addnew)
@@ -144,7 +148,11 @@ def update(table, id_):
     for index in range(len(table)):
         if table[index][0] == id_:
             addnew = ui.get_inputs(
-                ['month: ', 'day: ', 'year: ', 'type (in=income, out= outflow): ', 'amount (of transaction in USD): '], 
+                ['month: ',
+                 'day: ',
+                 'year: ',
+                 'type (in=income, out= outflow): ',
+                 'amount (of transaction in USD): '],
                 'Updating item in Accounting table')
             addnew.insert(0, id_)
             table[index] = addnew

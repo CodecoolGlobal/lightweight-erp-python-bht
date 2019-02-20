@@ -47,19 +47,33 @@ def choose():
     elif store_menu_options == '2':
         add(table)
     elif store_menu_options == '3':
-        remove(table, ui.get_inputs(['id'], 'Which id you want removed? \n')[0])
+        remove(
+            table,
+            ui.get_inputs(
+                ['id'],
+                'Which id you want removed? \n')[0])
     elif store_menu_options == '4':
-        update(table, ui.get_inputs(['id'], 'Which id you want updated? \n')[0])
+        update(
+            table,
+            ui.get_inputs(
+                ['id'],
+                'Which id you want updated? \n')[0])
     elif store_menu_options == '5':
         get_counts_by_manufacturers(table)
     elif store_menu_options == '6':
-        get_average_by_manufacturer(table, ui.get_inputs(['manufacturer'], 'Which manufacturer are you interested in? \n')[0])
+        get_average_by_manufacturer(
+            table,
+            ui.get_inputs(
+                ['manufacturer'],
+                'Which manufacturer are you interested in? \n')[0])
     elif store_menu_options == '0':
         return 0
+
 
 def handle_menu():
     store_menu = ['Show Table', 'Add', 'Remove', 'Update', 'Count', 'Avg']
     ui.print_menu('Store Menu', store_menu, 'Back to Main Menu')
+
 
 def show_table(table):
     """
@@ -72,7 +86,7 @@ def show_table(table):
         None
     """
     # your code
-    
+
     games_title_list = ['id', 'title', 'manufacturer', 'price', 'in_stock']
     ui.print_table(table, games_title_list)
 
@@ -93,7 +107,10 @@ def add(table):
     input_parameters = ['title', 'manufacturer', 'price', 'in_stock']
     add_line = []
     add_line.append(gen_id)
-    add_line.extend(ui.get_inputs(input_parameters, 'Please enter the following: \n'))
+    add_line.extend(
+        ui.get_inputs(
+            input_parameters,
+            'Please enter the following: \n'))
     table.append(add_line)
     data_manager.write_table_to_file('store/games.csv', table)
     return table
@@ -136,7 +153,7 @@ def update(table, id_):
     for index in range(len(table)):
         if table[index][0] == id_:
             addnew = ui.get_inputs(
-                ['title', 'manufacturer', 'price', 'in_stock'], 
+                ['title', 'manufacturer', 'price', 'in_stock'],
                 'Updating item of store')
             addnew.insert(0, id_)
             table[index] = addnew
@@ -166,7 +183,9 @@ def get_counts_by_manufacturers(table):
         else:
             dict1[line[2]] = 1
 
-    return ui.print_result(dict1, '\nManufacturers have the following amount of games: \n')
+    return ui.print_result(
+        dict1, '\nManufacturers have the following amount of games: \n')
+
 
 def get_average_by_manufacturer(table, manufacturer):
     """

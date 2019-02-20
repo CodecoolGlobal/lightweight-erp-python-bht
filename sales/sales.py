@@ -94,7 +94,11 @@ def add(table):
 
     id = common.generate_random(table)
     addnew = ui.get_inputs(
-        ['title of item: ', 'price of item: ', 'month of item: ', 'day of item: ', 'year of item: '], 
+        ['title of item: ',
+         'price of item: ',
+         'month of item: ',
+         'day of item: ',
+         'year of item: '],
         'Adding item to Sales')
     addnew.insert(0, id)
     table.append(addnew)
@@ -138,7 +142,11 @@ def update(table, id_):
     for index in range(len(table)):
         if table[index][0] == id_:
             addnew = ui.get_inputs(
-                ['title of item: ', 'price of item: ', 'month of item: ', 'day of item: ', 'year of item: '], 
+                ['title of item: ',
+                 'price of item: ',
+                 'month of item: ',
+                 'day of item: ',
+                 'year of item: '],
                 'Updating item of Sales')
             addnew.insert(0, id_)
             table[index] = addnew
