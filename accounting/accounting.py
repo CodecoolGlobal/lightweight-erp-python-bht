@@ -145,7 +145,7 @@ def update(table, id_):
         if table[index][0] == id_:
             addnew = ui.get_inputs(
                 ['month: ', 'day: ', 'year: ', 'type (in=income, out= outflow): ', 'amount (of transaction in USD): '], 
-        'Updating item in Accounting table')
+                'Updating item in Accounting table')
             addnew.insert(0, id_)
             table[index] = addnew
             data_manager.write_table_to_file('accounting/items.csv', table)
