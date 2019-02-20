@@ -30,6 +30,53 @@ def start_module():
     """
 
     # you code
+    list_options = ['show_table','add', 'remove','update','which_year_max','avg']
+    print_menu("Accounting", list_options, 'Back to Main Menu')
+    while True:
+        handle_menu()
+        try:
+            if choose() == 0:
+                break
+        except KeyError as err:
+            ui.print_error_message(str(err))
+
+
+def choose():
+    inputs = ui.get_inputs(["Please enter a number: "], "")
+    option = inputs[0]
+    table = data_manager.get_table_from_file('accounting/accounting.csv')
+    if option == "1":
+        show_table(table)
+    elif option == "2":
+        add(table)
+    elif option == "3":
+        id_ = ui.get_inputs(['Please enter an id: '], '')
+        remove(table, id_[0])
+    elif option == "4":
+        id_ = ui.get_inputs(['Please enter an id: '], '')
+        update(table, id_[0])
+"""
+    elif option == "5":
+        year_max = ui.get_inputs(['Please enter a year: '], '')
+        which_year_max(table)
+    elif option == "6":
+        avg(table)
+""" 
+    elif option == "0":
+        return 0
+    else:
+        raise KeyError("There is no such option.")
+
+
+def handle_menu():
+    options = ["Show table",
+               "Add item",
+               "Remove item",
+               "Update item",
+               "Year of highest profit",
+               "Average profit per item for a given year"]
+
+    ui.print_menu("Accounting", options, "Back to main menu")
 
 
 def show_table(table):
@@ -42,8 +89,8 @@ def show_table(table):
     Returns:
         None
     """
-
-    # your code
+    ui.print_table(table, ['id', 'month', 'day',
+                           'year', 'type', 'amount'])
 
 
 def add(table):
@@ -57,7 +104,13 @@ def add(table):
         list: Table with a new record
     """
 
-    # your code
+    id = common.generate_random(table)
+    addnew = ui.get_inputs(
+        ['month: ', 'day: ', 'year: ', 'type (in=income, out= outflow): ', 'amount (of transaction in USD): '], 
+        'Adding item to Accounting table')
+    addnew.insert(0, id)
+    table.append(addnew)
+    data_manager.write_table_to_file('accounting/accounting.csv', table)
 
     return table
 
@@ -73,8 +126,10 @@ def remove(table, id_):
     Returns:
         list: Table without specified record.
     """
-
-    # your code
+    for index in range(len(table)):
+        if table[index][0] == id_:
+            table.pop(index)
+        data_manager.write_table_to_file('accouting/accounting.csv', table)
 
     return table
 
@@ -91,7 +146,14 @@ def update(table, id_):
         list: table with updated record
     """
 
-    # your code
+     for index in range(len(table)):
+        if table[index][0] == id_:
+            addnew = ui.get_inputs(
+                ['month: ', 'day: ', 'year: ', 'type (in=income, out= outflow): ', 'amount (of transaction in USD): '], 
+        'Updating item in Accounting table')
+            addnew.insert(0, id_)
+            table[index] = addnew
+            data_manager.write_table_to_file('accounting/accounting.csv', table)
 
     return table
 
