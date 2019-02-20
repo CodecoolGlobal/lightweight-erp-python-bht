@@ -42,7 +42,9 @@ def print_table(table, title_list):
 
 
 def print_result(result, label):
-    pass
+    print(label)
+    print(result)
+
 
 
 '''

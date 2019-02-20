@@ -53,7 +53,7 @@ def choose():
     elif store_menu_options == '5':
         get_counts_by_manufacturers(table)
     elif store_menu_options == '6':
-        get_average_by_manufacturer(table, ui.get_inputs(['manufacturer'], 'Which manufacturer are you interested in? \n'))
+        get_average_by_manufacturer(table, ui.get_inputs(['manufacturer'], 'Which manufacturer are you interested in? \n')[0])
     elif store_menu_options == '0':
         return 0  # ???
 
@@ -71,14 +71,8 @@ def show_table(table):
     Returns:
         None
     """
-    '''
     # your code
-    games_csv = []
-    with open('games.csv', 'r') as f:
-        for line in f:
-            games_csv.append(line.rsplit(sep=';'))
-    # games_csv = [line.rsplit(sep=';') for line in f]
-    '''
+    
     games_title_list = ['id', 'title', 'manufacturer', 'price', 'in_stock']
     ui.print_table(table, games_title_list)
 
@@ -95,13 +89,13 @@ def add(table):
     """
 
     # your code a \n mehetne a get_inputsba, és egy : is a dupla space helyett
-    gen_id = '1'  # common.generate_random(data_manager.get_table_from_file('store/games.csv'))
+    gen_id = common.generate_random(table)
     input_parameters = ['title', 'manufacturer', 'price', 'in_stock']
     add_line = []
     add_line.append(gen_id)
     add_line.extend(ui.get_inputs(input_parameters, 'Please enter the following: \n'))
     table.append(add_line)
-    data_manager.write_table_to_file('store/games.csv', table)  # kell ez?
+    data_manager.write_table_to_file('store/games.csv', table)
     return table
 
 
@@ -121,7 +115,7 @@ def remove(table, id_):
     for index in range(len(table)):
         if table[index][0] == id_:
             table.pop(index)
-        data_manager.write_table_to_file('store/games.csv', table)  # kell ez?
+        data_manager.write_table_to_file('store/games.csv', table)
 
     return table
 
@@ -139,11 +133,14 @@ def update(table, id_):
     """
 
     # your code
-    for line_no, line in enumerate(table):
-        if id_ in line:
-            updates = table.pop(table[line_no])
-            input_parameters = ['title', 'manufacturer', 'price', 'in_stock']
-            table.insert(line_no, ui.get_inputs(input_parameters, 'Please enter the updates: \n'))
+    for index in range(len(table)):
+        if table[index][0] == id_:
+            addnew = ui.get_inputs(
+                ['title', 'manufacturer', 'price', 'in_stock'], 
+                'Updating item of store')
+            addnew.insert(0, id_)
+            table[index] = addnew
+        data_manager.write_table_to_file('store/games.csv', table)
     return table
 
 
@@ -168,8 +165,8 @@ def get_counts_by_manufacturers(table):
             dict1[line[2]] += 1
         else:
             dict1[line[2]] = 1
-    
-    return dict1
+
+    return ui.print_result(dict1, '\nManufacturers have the following amount of games: \n')
 
 def get_average_by_manufacturer(table, manufacturer):
     """
@@ -184,11 +181,11 @@ def get_average_by_manufacturer(table, manufacturer):
     """
 
     # your code
-    dict1 = {}
     count = 0
-    divider = 1
+    divider = 0
     for line in table:
-        if line[2] in dict1.keys():
-            count += line[4]
+        if line[2] == manufacturer:
+            count = count + int(line[4])
             divider += 1
-    return count/divider
+    result = count / divider
+    return ui.print_result(result, '\nAverage amt of games in stock: ')
