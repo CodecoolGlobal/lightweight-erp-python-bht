@@ -34,5 +34,8 @@ def generate_random(table):
 
     ID = ID_num + ID_letters_upper + ID_letters_lower + ID_special_chars
     generated = ''.join(ID)
-    return generated
-    
+    for line in table:
+        if generated == line[0]:
+            generated()
+        else:
+            return generated
