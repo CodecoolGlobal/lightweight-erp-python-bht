@@ -24,7 +24,7 @@ def generate_random(table):
     passphrase_min_length = 2
     nums = '0123456789'
     letters = 'abcdefghijklmnopqrstuvwxyz'
-    special_chars = "~!@#$%^&*()}{][+-_=/\\:\"'|,.?><"
+    special_chars = "#&"
     # must_contain [letters, letters, special_chars, nums]
 
     ID_num = [(random.choice(nums)) for x in range(0, passphrase_min_length)]
