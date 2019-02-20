@@ -92,7 +92,7 @@ def add(table):
         list: Table with a new record
     """
 
-    id = '1'
+    id = common.generate_random(table)
     addnew = ui.get_inputs(
         ['title of item: ', 'price of item: ', 'month of item: ', 'day of item: ', 'year of item: '], 
         'Adding item to Sales')
