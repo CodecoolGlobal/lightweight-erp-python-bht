@@ -81,7 +81,7 @@ def show_table(table):
     """
 
     # your code
-    ui.print_table(table, ['id', 'name', 'birth_year'])
+    ui.print_table(table, ['id', 'name', 'birth year'])
 
 
 def add(table):

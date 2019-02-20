@@ -87,7 +87,7 @@ def show_table(table):
     """
     # your code
 
-    games_title_list = ['id', 'title', 'manufacturer', 'price', 'in_stock']
+    games_title_list = ['id', 'title', 'manufacturer', 'price', 'in stock']
     ui.print_table(table, games_title_list)
 
 
