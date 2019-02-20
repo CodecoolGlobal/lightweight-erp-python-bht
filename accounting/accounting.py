@@ -55,13 +55,11 @@ def choose():
     elif option == "4":
         id_ = ui.get_inputs(['Please enter an id: '], '')
         update(table, id_[0])
-"""
     elif option == "5":
         year_max = ui.get_inputs(['Please enter a year: '], '')
         which_year_max(table)
     elif option == "6":
         avg(table)
-""" 
     elif option == "0":
         return 0
     else:
@@ -146,11 +144,11 @@ def update(table, id_):
         list: table with updated record
     """
 
-     for index in range(len(table)):
+    for index in range(len(table)):
         if table[index][0] == id_:
             addnew = ui.get_inputs(
                 ['month: ', 'day: ', 'year: ', 'type (in=income, out= outflow): ', 'amount (of transaction in USD): '], 
-        'Updating item in Accounting table')
+                'Updating item in Accounting table')
             addnew.insert(0, id_)
             table[index] = addnew
             data_manager.write_table_to_file('accounting/accounting.csv', table)

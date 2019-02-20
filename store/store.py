@@ -55,7 +55,7 @@ def choose():
     elif store_menu_options == '6':
         get_average_by_manufacturer(table, ui.get_inputs(['manufacturer'], 'Which manufacturer are you interested in? \n')[0])
     elif store_menu_options == '0':
-        return 0  # ???
+        return 0
 
 def handle_menu():
     store_menu = ['Show Table', 'Add', 'Remove', 'Update', 'Count', 'Avg']
