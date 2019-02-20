@@ -18,12 +18,13 @@
 
 
 def print_table(table, title_list):
-    print('/-----------------------------------\\')
-    for item in title_list:
-        for j in item:
-            print('|', {item[j]}, ' ' * (20 - len(item[j])), '|')
-        print('\n')
-        print('\\-----------------------------------/')
+    print('\n\t/-----------------------------------\\')
+    print('\t' + '| ' + ' | '.join(title_list) + ' |')
+    print('\t|' + '-' * 10 + '|' + '---------------------------------|')
+    for item in table:
+        print('\t|' + '-' * 10 + '|' + '---------------------------------|')
+        print('\t' + '| ' + ' | '.join(item) + ' |')
+    print('\t\\-----------------------------------/\n')
 
 
 '''
@@ -82,7 +83,20 @@ def print_menu(title, list_options, exit_message):
         Name <user_input_1>
         Surname <user_input_2>
         Age <user_input_3>
+'''
 
+
+def get_inputs(list_labels, title):
+    inputs = []
+    print(title)
+    for labels in list_labels:
+        item = input(labels + ' ')
+        inputs.append(item)
+
+    return inputs
+
+
+'''
     Args:
         list_labels (list): labels of inputs
         title (string): title of the "input section"
@@ -99,16 +113,6 @@ def print_menu(title, list_options, exit_message):
 
      your code
 '''
-
-
-def get_inputs(list_labels, title):
-    inputs = []
-    print(title)
-    for labels in list_labels:
-        item = input(labels + ' ')
-        inputs.append(item)
-
-    return inputs
 
 
 def print_error_message(message):
