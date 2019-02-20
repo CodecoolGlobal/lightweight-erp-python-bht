@@ -32,7 +32,8 @@ def start_module():
     while True:
         handle_menu()
         try:
-            choose()
+            if choose() == 0:
+                break
         except KeyError as err:
             ui.print_error_message(str(err))
 
@@ -40,20 +41,21 @@ def start_module():
 def choose():
     inputs = ui.get_inputs(["Please enter a number: "], "")
     store_menu_options = inputs[0]
-    if store_menu_options == 1:
-        show_table(data_manager.get_table_from_file('games.csv'))
-    elif store_menu_options == 2:
-        add(data_manager.get_table_from_file('games.csv'))
-    elif store_menu_options == 3:
-        remove(data_manager.get_table_from_file('games.csv'), ui.get_inputs(['id', 'Which id you want removed? \n']))
-    elif store_menu_options == 4:
-        update(data_manager.get_table_from_file('games.csv'), ui.get_inputs(['id', 'Which id you want updated? \n']))
-    elif store_menu_options == 5:
-        get_counts_by_manufacturers(data_manager.get_table_from_file('games.csv'))
-    elif store_menu_options == 6:
-        get_counts_by_manufacturers(data_manager.get_table_from_file('games.csv'), ui.get_inputs(['manufacturer'], 'Which manufacturer are you interested in? \n'))
-    elif store_menu_options == 0:
-        return  # ???
+    table = data_manager.get_table_from_file('store/games.csv')
+    if store_menu_options == '1':
+        show_table(table)
+    elif store_menu_options == '2':
+        add(table)
+    elif store_menu_options == '3':
+        remove(table, ui.get_inputs(['id'], 'Which id you want removed? \n')[0])
+    elif store_menu_options == '4':
+        update(table, ui.get_inputs(['id'], 'Which id you want updated? \n')[0])
+    elif store_menu_options == '5':
+        get_counts_by_manufacturers(table)
+    elif store_menu_options == '6':
+        get_average_by_manufacturer(table, ui.get_inputs(['manufacturer'], 'Which manufacturer are you interested in? \n'))
+    elif store_menu_options == '0':
+        return 0  # ???
 
 def handle_menu():
     store_menu = ['Show Table', 'Add', 'Remove', 'Update', 'Count', 'Avg']
@@ -93,13 +95,13 @@ def add(table):
     """
 
     # your code a \n mehetne a get_inputsba, és egy : is a dupla space helyett
-    gen_id = common.generate_random(data_manager.get_table_from_file('games.csv'))
+    gen_id = '1'  # common.generate_random(data_manager.get_table_from_file('store/games.csv'))
     input_parameters = ['title', 'manufacturer', 'price', 'in_stock']
     add_line = []
     add_line.append(gen_id)
     add_line.extend(ui.get_inputs(input_parameters, 'Please enter the following: \n'))
     table.append(add_line)
-    data_manager.write_table_to_file('games.csv', table)  # kell ez?
+    data_manager.write_table_to_file('store/games.csv', table)  # kell ez?
     return table
 
 
@@ -116,10 +118,10 @@ def remove(table, id_):
     """
 
     # your code
-    for line_no, line in enumerate(table):
-        if id_ in line:
-            table.remove(table[line_no])
-    data_manager.write_table_to_file('games.csv', table)  # kell ez?
+    for index in range(len(table)):
+        if table[index][0] == id_:
+            table.pop(index)
+        data_manager.write_table_to_file('store/games.csv', table)  # kell ez?
 
     return table
 
