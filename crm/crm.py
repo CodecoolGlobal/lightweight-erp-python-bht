@@ -27,7 +27,44 @@ def start_module():
         None
     """
 
-    # your code
+    while True:
+        handle_menu()
+        try:
+            if choose() == 0:
+                break
+        except KeyError as err:
+            ui.print_error_message(str(err))
+
+
+def choose():
+    inputs = ui.get_inputs(["Please enter a number: "], "")
+    option = inputs[0]
+    table = data_manager.get_table_from_file('crm/customers.csv')
+    if option == "1":
+        show_table(table)
+    elif option == "2":
+        add(table)
+    elif option == "3":
+        id_ = ui.get_inputs(['Please enter an id: '], '')
+        remove(table, id_[0])
+    elif option == "4":
+        id_ = ui.get_inputs(['Please enter an id: '], '')
+        update(table, id_[0])
+    elif option == "0":
+        return 0
+    else:
+        raise KeyError("There is no such option.")
+
+
+def handle_menu():
+    options = ["Show table",
+               "Add item",
+               "Remove item",
+               "Update item",
+               "ID of the longest name",
+               "List of customers who subscribed"]
+
+    ui.print_menu("CRM", options, "Back to main menu")
 
 
 def show_table(table):
@@ -41,7 +78,8 @@ def show_table(table):
         None
     """
 
-    # your code
+    ui.print_table(table, ['id', 'name', 'email',
+                           'subscribed'])
 
 
 def add(table):
@@ -55,7 +93,13 @@ def add(table):
         list: Table with a new record
     """
 
-    # your code
+    id = common.generate_random(table)
+    addnew = ui.get_inputs(
+        ['Customer name: ', 'E-mail address: ', 'Subscribed (Please enter 1 if yes, 0 if not yet): '], 
+        'Adding customer to CRM database')
+    addnew.insert(0, id)
+    table.append(addnew)
+    data_manager.write_table_to_file('crm/customers.csv', table)
 
     return table
 
@@ -72,7 +116,10 @@ def remove(table, id_):
         list: Table without specified record.
     """
 
-    # your code
+    for index in range(len(table)):
+        if table[index][0] == id_:
+            table.pop(index)
+        data_manager.write_table_to_file('crm/customers.csv', table)
 
     return table
 
@@ -89,7 +136,14 @@ def update(table, id_):
         list: table with updated record
     """
 
-    # your code
+    for index in range(len(table)):
+        if table[index][0] == id_:
+            addnew = ui.get_inputs(
+                ['Name of customer: ', 'E-mail address: ', 'Subscribed: '], 
+                'Updating customer in CRM database')
+            addnew.insert(0, id_)
+            table[index] = addnew
+            data_manager.write_table_to_file('crm/customers.csv', table)
 
     return table
 

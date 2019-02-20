@@ -29,9 +29,6 @@ def start_module():
         None
     """
 
-    # you code
-    list_options = ['show_table','add', 'remove','update','which_year_max','avg']
-    print_menu("Accounting", list_options, 'Back to Main Menu')
     while True:
         handle_menu()
         try:
@@ -44,7 +41,7 @@ def start_module():
 def choose():
     inputs = ui.get_inputs(["Please enter a number: "], "")
     option = inputs[0]
-    table = data_manager.get_table_from_file('accounting/accounting.csv')
+    table = data_manager.get_table_from_file('accounting/items.csv')
     if option == "1":
         show_table(table)
     elif option == "2":
@@ -108,7 +105,7 @@ def add(table):
         'Adding item to Accounting table')
     addnew.insert(0, id)
     table.append(addnew)
-    data_manager.write_table_to_file('accounting/accounting.csv', table)
+    data_manager.write_table_to_file('accounting/items.csv', table)
 
     return table
 
@@ -127,7 +124,7 @@ def remove(table, id_):
     for index in range(len(table)):
         if table[index][0] == id_:
             table.pop(index)
-        data_manager.write_table_to_file('accouting/accounting.csv', table)
+        data_manager.write_table_to_file('accouting/items.csv', table)
 
     return table
 
@@ -151,7 +148,7 @@ def update(table, id_):
                 'Updating item in Accounting table')
             addnew.insert(0, id_)
             table[index] = addnew
-            data_manager.write_table_to_file('accounting/accounting.csv', table)
+            data_manager.write_table_to_file('accounting/items.csv', table)
 
     return table
 
