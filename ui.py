@@ -18,13 +18,24 @@
 
 
 def print_table(table, title_list):
-    print('\n\t/-----------------------------------\\')
-    print('\t' + '| ' + ' | '.join(title_list) + ' |')
-    print('\t|' + '-' * 10 + '|' + '---------------------------------|')
+    ltitle = []
+    for i in title_list:
+        ltitle.append(len(i))
+    for lines in table:
+        for index in range(len(lines)):
+            if len(lines[index]) > ltitle[index]:
+                ltitle[index] = len(lines[index])
+    tw = len(table)+4
+    for i in ltitle:
+        tw += i
+    print(ltitle)
+    print(tw)       
+    print('\n\t/'+'-'*tw+'\\')
+    print('\t| {:^8} | {:^20} | {:^12} | {:^13} | {:^10} | '.format(title_list[0], title_list[1], title_list[2], title_list[3], title_list[4]))
     for item in table:
-        print('\t|' + '-' * 10 + '|' + '---------------------------------|')
+        print('\t|'+'-'*tw+'|')
         print('\t' + '| ' + ' | '.join(item) + ' |')
-    print('\t\\-----------------------------------/\n')
+    print('\t\\'+'-'*tw+'/\n')
 
 
 '''
