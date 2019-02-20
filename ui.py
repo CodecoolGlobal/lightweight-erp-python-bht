@@ -33,10 +33,16 @@ def print_table(table, title_list):
     for index in range(len(title_list)):
         string += '| {0:^{1}} '.format(title_list[index], ltitle[index])
     print('\t'+string+'|')
-    for item in table:
-        print('\t|' + '-' * tw + '|')
-        print('\t' + '| ' + ' | '.join(item) + ' |')
-    print('\t\\' + '-' * tw + '/\n')
+    print('\t|' + '-' * tw + '|')
+    for i in table:
+        string2 = ''
+        for index in range(len(i)):
+            string2 += '| {0:^{1}} '.format(i[index], ltitle[index])
+        print('\t'+string2+'|')
+        if i != table[-1]:
+            print('\t|' + '-' * tw + '|')
+        else:
+            print('\t\\' + '-' * tw + '/\n')
 
 
 '''
