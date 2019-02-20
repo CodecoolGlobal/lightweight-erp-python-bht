@@ -25,17 +25,18 @@ def print_table(table, title_list):
         for index in range(len(lines)):
             if len(lines[index]) > ltitle[index]:
                 ltitle[index] = len(lines[index])
-    tw = len(table)+4
+    tw = (len(title_list)+1)+(len(title_list)*2)-2
     for i in ltitle:
         tw += i
-    print(ltitle)
-    print(tw)       
-    print('\n\t/'+'-'*tw+'\\')
-    print('\t| {:^8} | {:^20} | {:^12} | {:^13} | {:^10} | '.format(title_list[0], title_list[1], title_list[2], title_list[3], title_list[4]))
+    print('\n\t/' + '-' * tw + '\\')
+    string = ''
+    for index in range(len(title_list)):
+        string += '| {0:^{1}} '.format(title_list[index], ltitle[index])
+    print('\t'+string+'|')
     for item in table:
-        print('\t|'+'-'*tw+'|')
+        print('\t|' + '-' * tw + '|')
         print('\t' + '| ' + ' | '.join(item) + ' |')
-    print('\t\\'+'-'*tw+'/\n')
+    print('\t\\' + '-' * tw + '/\n')
 
 
 '''
@@ -55,7 +56,6 @@ def print_table(table, title_list):
 def print_result(result, label):
     print(label)
     print(result)
-
 
 
 '''
