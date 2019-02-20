@@ -153,7 +153,17 @@ def get_oldest_person(table):
     """
 
     # your code
-
+    oldest_name = []
+    oldest = 2000
+    for line in table:
+        if line[2] < str(oldest):
+            oldest_name.clear()
+            oldest = line[2]
+            oldest_name.append(line[1])
+        elif line[2] == str(oldest):
+            oldest = line[2]
+            oldest_name.append(line[1])
+    return ui.print_result(oldest_name, "The oldest is/are: \n")
 
 def get_persons_closest_to_average(table):
     """
