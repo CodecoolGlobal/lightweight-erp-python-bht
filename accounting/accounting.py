@@ -53,10 +53,10 @@ def choose():
         id_ = ui.get_inputs(['Please enter an id: '], '')
         update(table, id_[0])
     elif option == "5":
-        year_max = ui.get_inputs(['Please enter a year: '], '')
+        # year_max = ui.get_inputs(['Please enter a year: '], '')
         which_year_max(table)
     elif option == "6":
-        avg(table)
+        avg_amount(table, ui.get_inputs(['year'], 'Which year? ')[0])
     elif option == "0":
         return 0
     else:
@@ -168,6 +168,21 @@ def which_year_max(table):
     """
 
     # your code
+    dict1 = {}
+    for line in table:
+        if line[3] in dict1.keys():
+            if line[4] == 'in':
+                dict1[line[3]] += int(line[5])
+            elif line[4] == 'out':
+                dict1[line[3]] -= int(line[5])
+        else:
+            if line[4] == 'in':
+                dict1[line[3]] = int(line[5])
+            elif line[4] == 'out':
+                dict1[line[3]] = -(int(line[5]))
+    for key, value in dict1.items():
+        if value == max(dict1.values()):
+            return ui.print_result(key, 'The biggest profit was in: ')
 
 
 def avg_amount(table, year):
@@ -183,3 +198,26 @@ def avg_amount(table, year):
     """
 
     # your code
+    dict1 = {}
+    count = 0
+    for line in table:
+        if year == line[3] in dict1.keys():
+            if line[4] == 'in':
+                dict1[line[3]] += int(line[5])
+                count += 1
+            elif line[4] == 'out':
+                dict1[line[3]] -= int(line[5])
+                count += 1
+        else:
+            if year == line[3]:
+                if line[4] == 'in':
+                    dict1[line[3]] = int(line[5])
+                    count += 1
+                elif line[4] == 'out':
+                    dict1[line[3]] = -(int(line[5]))
+                    count += 1
+    print(dict1)
+    print(count)
+    for value in dict1.values():
+        avg = int(value) / count
+        return ui.print_result(avg, f'The average profit in {year} is: ')
