@@ -168,13 +168,18 @@ def get_longest_name_id(table):
                 the last by alphabetical order of the names)
         """
 
-    name_max_length = ''
-    for line in table:
-        if len(line[1]) > len(name_max_length):
-            name_max_length = line[1]
-            ID = str(line[0])
-    ui.print_result(ID, "The ID of the customer with the longest name:")
-
+    len_of_names = []
+    maxi_names = []
+    for lines in table:
+        len_of_names.append(len(lines[1]))
+    max_len = max(len_of_names)
+    for lines in table:
+        if len(lines[1]) == max_len:
+            maxi_names.append(lines[1])
+    for lines in table:
+        if lines[1] == max(maxi_names):
+            ui.print_result(lines[0], "The ID of the customer with the longest name:")
+            return lines[0]    
 
 # the question: Which customers has subscribed to the newsletter?
 # return type: list of strings (where string is like email+separator+name,
@@ -193,6 +198,6 @@ def get_subscribed_emails(table):
     subs = []
     for line in table:
         if line[-1] == "1":
-            subs.append(line[2] + ";" + line[1])
-    print(subs)
+            subs.append(line[2]+";"+line[1])
+    ui.print_result(subs, "Subscribers' email addresses and their names")
     return subs
