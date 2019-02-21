@@ -208,6 +208,7 @@ def avg_amount(table, year):
     # your code
     dict1 = {}
     count = 0
+    year = str(year) # the test runs with a number, while the input is a string
     for line in table:
         if year == line[3] in dict1.keys():
             if line[4] == 'in':
@@ -225,6 +226,6 @@ def avg_amount(table, year):
                     dict1[line[3]] = -(int(line[5]))
                     count += 1
     for value in dict1.values():
-        avg = int(value) / count
+        avg = value / count
         ui.print_result(avg, f'The average profit in {year} is: ')
         return avg

@@ -55,8 +55,8 @@ def choose():
     elif option == "5":
         get_lowest_price_item_id(table)
     elif option == "6":
-        get_items_sold_between(ui.get_inputs(['table', 'month_from', 'day_from', 'year_from', 'month_to', 'day_to', 'year_to']))
-        #ez még nemjó valszeg
+        # get_items_sold_between(table, ui.get_inputs(['month_from '], '\nFill out:\n')[0], ui.get_inputs(['day_from '], '')[0], ui.get_inputs(['year_from '], '')[0], ui.get_inputs(['month_to '], '')[0], ui.get_inputs(['day_to '] '')[0], ui.get_inputs(['year_to '] '')[0])
+        # ez még nemjó
     elif option == "0":
         return 0
     else:
@@ -225,3 +225,9 @@ def get_items_sold_between(table, month_from, day_from,
     """
 
     # your code
+    answer_list = []
+    for line in table:
+        if month_from < line[3] < month_to and day_from < line[4] < day_to and year_from < line[5] < year_to:
+            answer_list.append(line)
+    ui.print_result(answer_list, 'The droids you are looking for:\n')
+    return answer_list
