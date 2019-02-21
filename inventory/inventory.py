@@ -76,7 +76,7 @@ def show_table(table):
         None
     """
     ui.print_table(table, ['id', 'name', 'manufacturer',
-                           'purchase year', 'durability'])
+                           'purchase_year', 'durability'])
 
 
 def add(table):
@@ -92,7 +92,7 @@ def add(table):
 
     id = common.generate_random(table)
     addnew = ui.get_inputs(
-        ['name of item: ', 'manufacturer of item: ', 'purchase year of item: ', 'durability of item: '], 
+        ['name of item: ', 'manufacturer of item: ', 'purchase_year of item: ', 'durability of item: '], 
         'Adding item to Inventory')
     addnew.insert(0, id)
     table.append(addnew)
@@ -136,7 +136,7 @@ def update(table, id_):
     for index in range(len(table)):
         if table[index][0] == id_:
             addnew = ui.get_inputs(
-                ['name of item: ', 'manufacturer of item: ', 'purchase year of item: ', 'durability of item: '], 
+                ['name of item: ', 'manufacturer of item: ', 'purchase_year of item: ', 'durability of item: '], 
                 'Updating item of Inventory')
             addnew.insert(0, id_)
             table[index] = addnew
