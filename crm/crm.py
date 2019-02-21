@@ -50,6 +50,10 @@ def choose():
     elif option == "4":
         id_ = ui.get_inputs(['Please enter an id: '], '')
         update(table, id_[0])
+    elif option == "5":
+        get_longest_name_id(table)
+    elif option == "6":
+        get_subscribed_emails(table)
     elif option == "0":
         return 0
     else:
@@ -95,7 +99,7 @@ def add(table):
 
     id = common.generate_random(table)
     addnew = ui.get_inputs(
-        ['Customer name: ', 'E-mail address: ', 'Subscribed (Please enter 1 if yes, 0 if not yet): '], 
+        ['Customer name: ', 'E-mail address: ', 'Subscribed (Please enter 1 if yes, 0 if not yet): '],
         'Adding customer to CRM database')
     addnew.insert(0, id)
     table.append(addnew)
@@ -139,7 +143,7 @@ def update(table, id_):
     for index in range(len(table)):
         if table[index][0] == id_:
             addnew = ui.get_inputs(
-                ['Name of customer: ', 'E-mail address: ', 'Subscribed: '], 
+                ['Name of customer: ', 'E-mail address: ', 'Subscribed: '],
                 'Updating customer in CRM database')
             addnew.insert(0, id_)
             table[index] = addnew
@@ -163,7 +167,12 @@ def get_longest_name_id(table):
                 the last by alphabetical order of the names)
         """
 
-    # your code
+    name_max_length = ''
+    for line in table:
+        if len(line[1]) > len(name_max_length):
+            name_max_length = line[1]
+            ID = str(line[0])
+    ui.print_result(ID, "The ID of the customer with the longest name:")
 
 
 # the question: Which customers has subscribed to the newsletter?
