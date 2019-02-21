@@ -191,5 +191,3 @@ def get_average_durability_by_manufacturers(table):
         rlist.append(lines[-3])
         rlist.append(lines[-1])
 #        for i in rlist:
-#            if i ==
-    print(rlist)
