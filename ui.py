@@ -46,7 +46,6 @@ def print_result(result, label):
     print(result)
 
 
-
 '''
     Displays a menu. Sample output:
         Main menu:
