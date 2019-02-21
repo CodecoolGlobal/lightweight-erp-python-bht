@@ -71,8 +71,8 @@ def choose():
 
 
 def handle_menu():
-    store_menu = ['Show Table', 'Add', 'Remove', 'Update', 'Count', 'Avg']
-    ui.print_menu('Store', store_menu, 'Back to Main Menu')
+    store_menu = ['Show table', 'Add item', 'Remove item', 'Update item', 'Count by manufacturer', 'Avgerage by manufacturer']
+    ui.print_menu('Store', store_menu, 'Back to main menu')
 
 
 def show_table(table):

@@ -62,9 +62,9 @@ def choose():
 
 def handle_menu():
     options = ["Show table",
-               "Add ithem",
-               "Remove ithem",
-               "Update ithem",
+               "Add item",
+               "Remove item",
+               "Update item",
                "Get aviable items",
                "Average durability"]
 
@@ -190,4 +190,5 @@ def get_average_durability_by_manufacturers(table):
     for lines in table:
         rlist.append(lines[-3])
         rlist.append(lines[-1])
-#        for i in rlist:
+        for i in rlist:
+            pass

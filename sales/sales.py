@@ -52,6 +52,10 @@ def choose():
     elif option == "4":
         id_ = ui.get_inputs(['Please enter an id: '], '')
         update(table, id_[0])
+    elif option == "5":
+        get_lowest_price_item_id()
+    elif option == "6":
+        get_items_sold_between()
     elif option == "0":
         return 0
     else:
@@ -62,7 +66,9 @@ def handle_menu():
     options = ["Show table",
                "Add ithem",
                "Remove ithem",
-               "Update ithem"]
+               "Update ithem",
+               "Lowest price item",
+               "Items sold between"]
 
     ui.print_menu("Sales", options, "Back to main menu")
 
