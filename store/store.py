@@ -72,7 +72,7 @@ def choose():
 
 def handle_menu():
     store_menu = ['Show Table', 'Add', 'Remove', 'Update', 'Count', 'Avg']
-    ui.print_menu('Store Menu', store_menu, 'Back to Main Menu')
+    ui.print_menu('Store', store_menu, 'Back to Main Menu')
 
 
 def show_table(table):
@@ -87,7 +87,7 @@ def show_table(table):
     """
     # your code
 
-    games_title_list = ['id', 'title', 'manufacturer', 'price', 'in stock']
+    games_title_list = ['id', 'title', 'manufacturer', 'price', 'in_stock']
     ui.print_table(table, games_title_list)
 
 
@@ -189,7 +189,7 @@ def get_counts_by_manufacturers(table):
 
 def get_average_by_manufacturer(table, manufacturer):
     """
-    Question: What is the average amount of games in stock of a given manufacturer?
+    Question: What is the average amount of games in_stock of a given manufacturer?
 
     Args:
         table (list): data table to work on
@@ -207,4 +207,4 @@ def get_average_by_manufacturer(table, manufacturer):
             count = count + int(line[4])
             divider += 1
     result = count / divider
-    return ui.print_result(result, '\nAverage amt of games in stock: ')
+    return ui.print_result(result, '\nAverage amt of games in_stock: ')

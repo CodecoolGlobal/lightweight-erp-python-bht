@@ -66,7 +66,7 @@ def choose():
 
 def handle_menu():
     store_menu = ['Show Table', 'Add', 'Remove', 'Update', 'Oldest', 'Avg']
-    ui.print_menu('Store Menu', store_menu, 'Back to Main Menu')
+    ui.print_menu('HR', store_menu, 'Back to Main Menu')
 
 
 def show_table(table):
@@ -81,7 +81,7 @@ def show_table(table):
     """
 
     # your code
-    ui.print_table(table, ['id', 'name', 'birth year'])
+    ui.print_table(table, ['id', 'name', 'birth_year'])
 
 
 def add(table):
@@ -98,7 +98,7 @@ def add(table):
     # your code
     id = common.generate_random(table)
     addnew = ui.get_inputs(
-        ['name: ', 'birth year: '],
+        ['name: ', 'birth_year: '],
         'Adding entry to hr')
     addnew.insert(0, id)
     table.append(addnew)
@@ -142,7 +142,7 @@ def update(table, id_):
     for index in range(len(table)):
         if table[index][0] == id_:
             addnew = ui.get_inputs(
-                ['name: ', 'birth year: '],
+                ['name: ', 'birth_year: '],
                 'Updating list of hr')
             addnew.insert(0, id_)
             table[index] = addnew
