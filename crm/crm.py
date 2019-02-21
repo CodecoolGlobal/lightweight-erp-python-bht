@@ -204,4 +204,5 @@ def get_subscribed_emails(table):
         if line[-1] == "1":
             subs.append(line[2] + ";" + line[1])
     ui.print_result(subs, "Subscribers' email addresses and their names")
+
     return subs
