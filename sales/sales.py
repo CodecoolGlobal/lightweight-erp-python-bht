@@ -53,9 +53,16 @@ def choose():
         id_ = ui.get_inputs(['Please enter an id: '], '')
         update(table, id_[0])
     elif option == "5":
-        get_lowest_price_item_id()
+        get_lowest_price_item_id(table)
     elif option == "6":
-        get_items_sold_between()
+        month_from = ui.get_inputs(['Please enter month_from: '], '')
+        day_from = ui.get_inputs(['Please enter day_from: '], '')
+        year_from = ui.get_inputs(['Please enter year_from: '], '')
+        month_to = ui.get_inputs(['Please enter month_to: '], '')
+        day_to = ui.get_inputs(['Please enter day_to: '], '')
+        year_to = ui.get_inputs(['Please enter year_to: '], '')
+        get_items_sold_between(table, month_from[0], day_from[0],
+                           year_from[0], month_to[0], day_to[0], year_to[0])
     elif option == "0":
         return 0
     else:
@@ -223,8 +230,10 @@ def get_items_sold_between(table, month_from, day_from,
 
     # your code
     answer_list = []
+    # from1 = [year_from, month_from, day_from]
+    # to1 = [year_to, month_to, day_to]
     for line in table:
-        if month_from < line[3] < month_to and day_from < line[4] < day_to and year_from < line[5] < year_to:
+    #    if year_from <= line[3] <= year_to:
             answer_list.append(line)
     ui.print_result(answer_list, 'The droids you are looking for:\n')
     return answer_list
