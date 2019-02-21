@@ -50,6 +50,10 @@ def choose():
     elif option == "4":
         id_ = ui.get_inputs(['Please enter an id: '], '')
         update(table, id_[0])
+    elif option == "5":
+        get_longest_name_id(table)
+    elif option == "6":
+        get_subscribed_emails(table)
     elif option == "0":
         return 0
     else:
@@ -164,7 +168,12 @@ def get_longest_name_id(table):
                 the last by alphabetical order of the names)
         """
 
-    # your code
+    name_max_length = ''
+    for line in table:
+        if len(line[1]) > len(name_max_length):
+            name_max_length = line[1]
+            ID = str(line[0])
+    ui.print_result(ID, "The ID of the customer with the longest name:")
 
 
 # the question: Which customers has subscribed to the newsletter?
@@ -181,4 +190,9 @@ def get_subscribed_emails(table):
             list: list of strings (where a string is like "email;name")
         """
 
-    # your code
+    subs = []
+    for line in table:
+        if line[-1] == "1":
+            subs.append(line[2]+";"+line[1])
+    print(subs)
+    return subs
