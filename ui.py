@@ -18,31 +18,32 @@
 
 
 def print_table(table, title_list):
-    ltitle = []
+    title_list_lenght = []
     for i in title_list:
-        ltitle.append(len(i))
+        title_list_lenght.append(len(i))
     for lines in table:
         for index in range(len(lines)):
-            if len(lines[index]) > ltitle[index]:
-                ltitle[index] = len(lines[index])
+            if len(lines[index]) > title_list_lenght[index]:
+                title_list_lenght[index] = len(lines[index])
     tw = (len(title_list) + 1) + (len(title_list) * 2) - 2
-    for i in ltitle:
+    for i in title_list_lenght:
         tw += i
     print('\n\t/' + '-' * tw + '\\')
-    string = ''
+    string_title = ''
+    string_tabulator = ''
     for index in range(len(title_list)):
-        string += '| {0:^{1}} '.format(title_list[index], ltitle[index])
-    print('\t' + string + '|')
-    print('\t|' + '-' * tw + '|')
+        string_title += '| {0:^{1}} '.format(title_list[index], title_list_lenght[index])
+        string_tabulator += '|{0:^{1}}'.format('-'*((title_list_lenght[index])+2), title_list_lenght[index])
+    print('\t' + string_title + '|')
+    print('\t' + string_tabulator + '|')
     for i in table:
-        string2 = ''
+        string_table = ''
         for index in range(len(i)):
-            string2 += '| {0:^{1}} '.format(i[index], ltitle[index])
-        print('\t' + string2 + '|')
+            string_table += '| {0:^{1}} '.format(i[index], title_list_lenght[index])
+        print('\t' + string_table + '|')
         if i != table[-1]:
-            print('\t|' + '-' * tw + '|')
-        else:
-            print('\t\\' + '-' * tw + '/\n')
+            print('\t' + string_tabulator + '|')
+    print('\t\\' + '-' * tw + '/\n')
 
 
 '''
