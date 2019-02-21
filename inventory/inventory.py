@@ -173,7 +173,7 @@ def get_available_items(table):
             rtable.append(lines)
     ui.print_result(rtable, '\nAviable items:')
     return rtable
-
+ 
 
 def get_average_durability_by_manufacturers(table):
     """
@@ -190,6 +190,6 @@ def get_average_durability_by_manufacturers(table):
     for lines in table:
         rlist.append(lines[-3])
         rlist.append(lines[-1])
-        for i in rlist:
-            if i ==
+#        for i in rlist:
+#            if i ==
     print(rlist)
