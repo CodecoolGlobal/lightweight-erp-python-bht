@@ -98,7 +98,10 @@ def add(table):
 
     id = common.generate_random(table)
     addnew = ui.get_inputs(
-        ['name of item: ', 'manufacturer of item: ', 'purchase_year of item: ', 'durability of item: '], 
+        ['name of item: ',
+         'manufacturer of item: ',
+         'purchase_year of item: ',
+         'durability of item: '],
         'Adding item to Inventory')
     addnew.insert(0, id)
     table.append(addnew)
@@ -142,7 +145,10 @@ def update(table, id_):
     for index in range(len(table)):
         if table[index][0] == id_:
             addnew = ui.get_inputs(
-                ['name of item: ', 'manufacturer of item: ', 'purchase_year of item: ', 'durability of item: '], 
+                ['name of item: ',
+                 'manufacturer of item: ',
+                 'purchase_year of item: ',
+                 'durability of item: '],
                 'Updating item of Inventory')
             addnew.insert(0, id_)
             table[index] = addnew
@@ -164,16 +170,16 @@ def get_available_items(table):
     Returns:
         list: list of lists (the inner list contains the whole row with their actual data types)
     """
-    
+
     rtable = []
     for lines in table:
         lines[-2] = int(lines[-2])
         lines[-1] = int(lines[-1])
-        if lines[-2]+lines[-1] >= 2017:
+        if lines[-2] + lines[-1] >= 2017:
             rtable.append(lines)
     ui.print_result(rtable, '\nAviable items:')
     return rtable
- 
+
 
 def get_average_durability_by_manufacturers(table):
     """
@@ -185,10 +191,17 @@ def get_average_durability_by_manufacturers(table):
     Returns:
         dict: a dictionary with this structure: { [manufacturer] : [avg] }
     """
-    rdict = {}
-    rlist = []
-    for lines in table:
-        rlist.append(lines[-3])
-        rlist.append(lines[-1])
-        for i in rlist:
-            pass
+    manufacturer_list = list(set(i[2] for i in table))
+    manufacturer_dict = {i: 0 for i in manufacturer_list}
+    for key in manufacturer_list:
+        counter = 0
+        years_total = 0
+        for lines in table:
+            if lines[2] == key:
+                manufacturer_dict[key] += int(lines[4])
+                years_total += int(lines[4])
+                counter += 1
+        manufacturer_dict[key] = years_total/counter
+
+    ui.print_result(manufacturer_dict, '\nAverage durability by manufacturer:')
+    return manufacturer_dict
