@@ -52,6 +52,11 @@ def choose():
     elif option == "4":
         id_ = ui.get_inputs(['Please enter an id: '], '')
         update(table, id_[0])
+    elif option == "5":
+        get_lowest_price_item_id(table)
+    elif option == "6":
+        get_items_sold_between(ui.get_inputs(['table', 'month_from', 'day_from', 'year_from', 'month_to', 'day_to', 'year_to']))
+        #ez még nemjó valszeg
     elif option == "0":
         return 0
     else:
@@ -60,9 +65,11 @@ def choose():
 
 def handle_menu():
     options = ["Show table",
-               "Add ithem",
-               "Remove ithem",
-               "Update ithem"]
+               "Add item",
+               "Remove item",
+               "Update item",
+               "lowest",
+               "option 6"]
 
     ui.print_menu("Sales", options, "Back to main menu")
 
@@ -170,7 +177,32 @@ def get_lowest_price_item_id(table):
          string: id
     """
 
+
     # your code
+    lowest_price = 100
+    id_ = []
+    title = []
+    for line in table:
+        if int(line[2]) < lowest_price:
+            id_.clear()
+            title.clear()
+            lowest_price = int(line[2])
+            id_.append(line[0])
+            title.append(line[1])
+        else:
+            if int(line[2]) == lowest_price:
+                id_.append(line[0])
+                title.append(line[1])
+    return ui.print_result(sort_list(id_)[-1], 'The ID of lowest sold is:')
+
+
+def sort_list(list1):
+    for i in range(len(list1)):
+        for j in range(len(list1)-1):
+            while list1[j] > list1[j + 1]:
+                temp = list1.pop(j + 1)
+                list1.insert(j, temp)
+    return list1
 
 
 def get_items_sold_between(table, month_from, day_from,
