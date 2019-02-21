@@ -193,6 +193,6 @@ def get_subscribed_emails(table):
     subs = []
     for line in table:
         if line[-1] == "1":
-            subs.append(line[2]+";"+line[1])
+            subs.append(line[2] + ";" + line[1])
     print(subs)
     return subs

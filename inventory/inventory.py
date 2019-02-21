@@ -201,7 +201,7 @@ def get_average_durability_by_manufacturers(table):
                 manufacturer_dict[key] += int(lines[4])
                 years_total += int(lines[4])
                 counter += 1
-        manufacturer_dict[key] = years_total/counter
+        manufacturer_dict[key] = years_total / counter
 
     ui.print_result(manufacturer_dict, '\nAverage durability by manufacturer:')
     return manufacturer_dict

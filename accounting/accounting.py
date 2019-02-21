@@ -193,6 +193,7 @@ def which_year_max(table):
             ui.print_result(key, 'The biggest profit was in: ')
             return int(key)
 
+
 def avg_amount(table, year):
     """
     Question: What is the average (per item) profit in a given year? [(profit)/(items count)]
@@ -208,7 +209,8 @@ def avg_amount(table, year):
     # your code
     dict1 = {}
     count = 0
-    year = str(year) # the test runs with a number, while the input is a string
+    # the test runs with a number, while the input is a string
+    year = str(year)
     for line in table:
         if year == line[3] in dict1.keys():
             if line[4] == 'in':

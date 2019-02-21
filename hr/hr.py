@@ -65,7 +65,13 @@ def choose():
 
 
 def handle_menu():
-    store_menu = ['Show table', 'Add item', 'Remove item', 'Update item', 'Oldest person', 'People closest to average']
+    store_menu = [
+        'Show table',
+        'Add item',
+        'Remove item',
+        'Update item',
+        'Oldest person',
+        'People closest to average']
     ui.print_menu('HR', store_menu, 'Back to main menu')
 
 
