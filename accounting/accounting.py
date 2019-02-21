@@ -190,8 +190,8 @@ def which_year_max(table):
                 dict1[line[3]] = -(int(line[5]))
     for key, value in dict1.items():
         if value == max(dict1.values()):
-            return ui.print_result(key, 'The biggest profit was in: ')
-
+            ui.print_result(key, 'The biggest profit was in: ')
+            return int(key)
 
 def avg_amount(table, year):
     """
@@ -224,8 +224,7 @@ def avg_amount(table, year):
                 elif line[4] == 'out':
                     dict1[line[3]] = -(int(line[5]))
                     count += 1
-    print(dict1)
-    print(count)
     for value in dict1.values():
         avg = int(value) / count
-        return ui.print_result(avg, f'The average profit in {year} is: ')
+        ui.print_result(avg, f'The average profit in {year} is: ')
+        return avg

@@ -193,7 +193,8 @@ def get_lowest_price_item_id(table):
             if int(line[2]) == lowest_price:
                 id_.append(line[0])
                 title.append(line[1])
-    return ui.print_result(sort_list(id_)[-1], 'The ID of lowest sold is:')
+    ui.print_result(sort_list(id_)[-1], 'The ID of lowest sold is:')
+    return sort_list(id_)[-1]
 
 
 def sort_list(list1):
