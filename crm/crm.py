@@ -99,7 +99,8 @@ def add(table):
 
     id = common.generate_random(table)
     addnew = ui.get_inputs(
-        ['Customer name: ', 'E-mail address: ', 'Subscribed (Please enter 1 if yes, 0 if not yet): '],
+        ['Customer name: ', 'E-mail address: ',
+            'Subscribed (Please enter 1 if yes, 0 if not yet): '],
         'Adding customer to CRM database')
     addnew.insert(0, id)
     table.append(addnew)
@@ -176,7 +177,8 @@ def get_longest_name_id(table):
 
 
 # the question: Which customers has subscribed to the newsletter?
-# return type: list of strings (where string is like email+separator+name, separator=";")
+# return type: list of strings (where string is like email+separator+name,
+# separator=";")
 def get_subscribed_emails(table):
     """
         Question: Which customers has subscribed to the newsletter?
@@ -188,4 +190,9 @@ def get_subscribed_emails(table):
             list: list of strings (where a string is like "email;name")
         """
 
-    # your code
+    subs = []
+    for line in table:
+        if line[-1] == "1":
+            subs.append(line[2]+";"+line[1])
+    print(subs)
+    return subs
