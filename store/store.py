@@ -72,7 +72,7 @@ def choose():
 
 def handle_menu():
     store_menu = ['Show Table', 'Add', 'Remove', 'Update', 'Count', 'Avg']
-    ui.print_menu('Store Menu', store_menu, 'Back to Main Menu')
+    ui.print_menu('Store', store_menu, 'Back to Main Menu')
 
 
 def show_table(table):
