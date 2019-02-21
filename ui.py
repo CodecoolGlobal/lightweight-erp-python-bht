@@ -61,8 +61,21 @@ def print_table(table, title_list):
 
 
 def print_result(result, label):
-    print(label)
     print(result)
+    print('\n'+label+'\n')
+    if type(result) is str:
+        print('str')
+    elif type(result) is int:
+        print('int')
+    elif type(result) is list:
+        for item in result:
+            print(item)
+    elif type(result) is dict:
+        print('dictionary')
+    elif type(result) is float:
+        print('float')
+    else:
+        print('something else than str,int,float,list or dictionary')
 
 
 '''
