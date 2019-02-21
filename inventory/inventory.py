@@ -52,6 +52,8 @@ def choose():
         update(table, id_[0])
     elif option == "5":
         get_available_items(table)
+    elif option == "6":
+        get_average_durability_by_manufacturers(table)
     elif option == "0":
         return 0
     else:
@@ -63,7 +65,8 @@ def handle_menu():
                "Add ithem",
                "Remove ithem",
                "Update ithem",
-               "Get aviable items"]
+               "Get aviable items",
+               "Average durability"]
 
     ui.print_menu("Inventory", options, "Back to main menu")
 
@@ -161,14 +164,14 @@ def get_available_items(table):
     Returns:
         list: list of lists (the inner list contains the whole row with their actual data types)
     """
+    
     rtable = []
-
     for lines in table:
         lines[-2] = int(lines[-2])
         lines[-1] = int(lines[-1])
         if lines[-2]+lines[-1] >= 2017:
             rtable.append(lines)
-    ui.print_result(rtable, 'Aviable items:')
+    ui.print_result(rtable, '\nAviable items:')
     return rtable
 
 
@@ -182,5 +185,11 @@ def get_average_durability_by_manufacturers(table):
     Returns:
         dict: a dictionary with this structure: { [manufacturer] : [avg] }
     """
-
-    # your code
+    rdict = {}
+    rlist = []
+    for lines in table:
+        rlist.append(lines[-3])
+        rlist.append(lines[-1])
+        for i in rlist:
+            if i ==
+    print(rlist)
