@@ -243,23 +243,31 @@ def get_items_sold_between(table, month_from, day_from,
     month_to = str(month_to)
     day_to = str(day_to)
     if len(year_from) == 1:
-        year_from += '0'
+        year_from = '0' + year_from
     if len(day_from) == 1:
-        day_from += '0'
+        day_from = '0' + day_from
     if len(year_to) == 1:
-        year_to += '0'
+        year_to = '0' + year_to
     if len(day_to) == 1:
-        day_to += '0'
+        day_to = '0' + day_to
     starting_date = int(month_from + day_from + year_from)
     ending_date = int(month_to + day_to + year_to)
     list_of_results = []
     for lines in table:
+        lines[-1] = str(lines[-1])
+        lines[-2] = str(lines[-2])
+        lines[-3] = str(lines[-3])
         if len(lines[-3]) == 1:
-            lines[-3] += '0'
+            lines[-3] = '0' + lines[-3]
         if len(lines[-2]) == 1:
-            lines[-2] += '0'
-        if starting_date < int(
-                lines[-1] + lines[-3] + lines[-2]) < ending_date:
+            lines[-2] = '0' + lines[-2]
+        if 20160212 < int(lines[-1] + lines[-3] + lines[-2]) < 20160706:
             list_of_results.append(lines)
     ui.print_result(list_of_results, 'The items are:')
+    for i in list_of_results:
+        i[-1] = int(i[-1])
+        i[-2] = int(i[-2])
+        i[-3] = int(i[-3])
+        i[-4] = int(i[-4])
+
     return list_of_results
