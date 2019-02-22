@@ -32,14 +32,18 @@ def print_table(table, title_list):
     string_title = ''
     string_tabulator = ''
     for index in range(len(title_list)):
-        string_title += '| {0:^{1}} '.format(title_list[index], title_list_lenght[index])
-        string_tabulator += '|{0:^{1}}'.format('-'*((title_list_lenght[index])+2), title_list_lenght[index])
+        string_title += '| {0:^{1}} '.format(
+            title_list[index], title_list_lenght[index])
+        string_tabulator += '|{0:^{1}}'.format('-' *
+                                               ((title_list_lenght[index]) +
+                                                2), title_list_lenght[index])
     print('\t' + string_title + '|')
     print('\t' + string_tabulator + '|')
     for i in table:
         string_table = ''
         for index in range(len(i)):
-            string_table += '| {0:^{1}} '.format(i[index], title_list_lenght[index])
+            string_table += '| {0:^{1}} '.format(
+                i[index], title_list_lenght[index])
         print('\t' + string_table + '|')
         if i != table[-1]:
             print('\t' + string_tabulator + '|')
@@ -61,28 +65,32 @@ def print_table(table, title_list):
 
 
 def print_result(result, label):
-    if type(result) is str:
+    if isinstance(result, str):
         print('str')
         print(result)
-        print('\n'+label+'\n')
+        print('\n' + label + '\n')
 
-    elif type(result) is int:
+    elif isinstance(result, int):
         print('int')
         print(result)
-        print('\n'+label+'\n')
+        print('\n' + label + '\n')
 
-    elif type(result) is list:
+    elif isinstance(result, list):
+        print('list')
+        print('\n' + label + '\n')
         for item in result:
             print(item)
-    elif type(result) is dict:
-        print('dictionary')
-        print(result)
-        print('\n'+label+'\n')
 
-    elif type(result) is float:
+    elif isinstance(result, dict):
+        print('dictionary')
+        print('\n' + label + '\n')
+        for key, value in result.items():
+            print(key, value)
+
+    elif isinstance(result, float):
         print('float')
         print(result)
-        print('\n'+label+'\n')
+        print('\n' + label + '\n')
 
     else:
         print('something else than str,int,float,list or dictionary')

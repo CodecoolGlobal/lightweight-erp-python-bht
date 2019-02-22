@@ -145,8 +145,8 @@ def update(table, id_):
         list: table with updated record
     """
 
-    for index in range(len(table)):
-        if table[index][0] == id_:
+    for row in table:
+        if row[0] == id_:
             addnew = ui.get_inputs(
                 ['month: ',
                  'day: ',
@@ -155,7 +155,7 @@ def update(table, id_):
                  'amount (of transaction in USD): '],
                 'Updating item in Accounting table')
             addnew.insert(0, id_)
-            table[index] = addnew
+            row = addnew
             data_manager.write_table_to_file('accounting/items.csv', table)
 
     return table

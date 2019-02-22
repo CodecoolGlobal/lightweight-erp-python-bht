@@ -55,20 +55,20 @@ def choose():
     elif option == "5":
         get_lowest_price_item_id(table)
     elif option == "6":
-        year_from = ui.get_inputs(['Please enter year_from: '], '')
         month_from = ui.get_inputs(['Please enter month_from: '], '')
         day_from = ui.get_inputs(['Please enter day_from: '], '')
-        year_to = ui.get_inputs(['Please enter year_to: '], '')
+        year_from = ui.get_inputs(['Please enter year_from: '], '')
         month_to = ui.get_inputs(['Please enter month_to: '], '')
         day_to = ui.get_inputs(['Please enter day_to: '], '')
+        year_to = ui.get_inputs(['Please enter year_to: '], '')
         get_items_sold_between(
             table,
-            year_from[0],
             month_from[0],
             day_from[0],
-            year_to[0],
+            year_from[0],
             month_to[0],
-            day_to[0])
+            day_to[0],
+            year_to[0])
     elif option == "0":
         return 0
     else:
@@ -234,40 +234,13 @@ def get_items_sold_between(table, month_from, day_from,
     Returns:
         list: list of lists (the filtered table)
     """
-
-    # your code
-    year_from = str(year_from)
-    month_from = str(month_from)
-    day_from = str(day_from)
-    year_to = str(year_to)
-    month_to = str(month_to)
-    day_to = str(day_to)
-    if len(year_from) == 1:
-        year_from = '0' + year_from
-    if len(day_from) == 1:
-        day_from = '0' + day_from
-    if len(year_to) == 1:
-        year_to = '0' + year_to
-    if len(day_to) == 1:
-        day_to = '0' + day_to
-    starting_date = int(month_from + day_from + year_from)
-    ending_date = int(month_to + day_to + year_to)
-    list_of_results = []
-    for lines in table:
-        lines[-1] = str(lines[-1])
-        lines[-2] = str(lines[-2])
-        lines[-3] = str(lines[-3])
-        if len(lines[-3]) == 1:
-            lines[-3] = '0' + lines[-3]
-        if len(lines[-2]) == 1:
-            lines[-2] = '0' + lines[-2]
-        if 20160212 < int(lines[-1] + lines[-3] + lines[-2]) < 20160706:
-            list_of_results.append(lines)
-    ui.print_result(list_of_results, 'The items are:')
-    for i in list_of_results:
-        i[-1] = int(i[-1])
-        i[-2] = int(i[-2])
-        i[-3] = int(i[-3])
-        i[-4] = int(i[-4])
-
-    return list_of_results
+    filtered_table = []
+    from_date = (int(year_from), int(month_from), int(day_from))
+    to_date = (int(year_to), int(month_to), int(day_to))
+    for row in table:
+        if from_date < (int(row[-1]), int(row[-3]), int(row[-2])) < to_date:
+            row[-1], row[-2], row[-3], row[-4] = int(
+                row[-1]), int(row[-2]), int(row[-3]), int(row[-4])
+            filtered_table.append(row)
+    ui.print_result(filtered_table, 'Items sold between: ')
+    return filtered_table
