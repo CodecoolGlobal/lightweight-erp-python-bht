@@ -39,6 +39,6 @@ def generate_random(table):
     generated = ''.join(ID)
     for line in table:
         if generated == line[0]:
-            generated()
+            generate_random()
         else:
             return generated
