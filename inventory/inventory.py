@@ -177,7 +177,13 @@ def get_available_items(table):
         lines[-1] = int(lines[-1])
         if lines[-2] + lines[-1] >= 2017:
             rtable.append(lines)
+    for lines in table:
+        lines[-2] = str(lines[-2])
+        lines[-1] = str(lines[-1])
     ui.print_result(rtable, '\nAviable items:')
+    for lines in table:
+        lines[-2] = int(lines[-2])
+        lines[-1] = int(lines[-1])
     return rtable
 
 

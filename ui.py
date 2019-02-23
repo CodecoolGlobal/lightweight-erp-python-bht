@@ -66,34 +66,34 @@ def print_table(table, title_list):
 
 def print_result(result, label):
     if isinstance(result, str):
-        print('\n\t>>str<<')
-        print('\n\t' + label + '\n')
-        print('\t'+result)
+        print('\n\t>>result data type is str<<\n')
+        print(f'\t{label}\n')
+        print(f'\t{result}')
 
     elif isinstance(result, int):
-        print('\n\t>>int<<')
-        print('\n\t' + label + '\n')
-        print('\t'+result)
-
-    elif isinstance(result, list):
-        print('\n\t>>list<<')
-        print('\n\t' + label + '\n')
-        for item in result:
-            print('\t'+str(item))
-
-    elif isinstance(result, dict):
-        print('\n\t>>dictionary<<')
-        print('\n\t' + label + '\n')
-        for key, value in result.items():
-            print('\t'+key, value)
+        print('\n\t>>result data type is int<<\n')
+        print(f'\t{label}\n')
+        print(f'\t{result}')
 
     elif isinstance(result, float):
-        print('\n\t>>float<<')
-        print('\n\t' + label + '\n')
-        print('\t'+result)
+        print('\n\t>>result data type is float<<\n')
+        print(f'\t{label}\n')
+        print(f'\t{result}')
+
+    elif isinstance(result, list):
+        print('\n\t>>result data type is list<<\n')
+        print(f'\t{label}\n')
+        for row in result:
+            print(f'\t{row}')
+
+    elif isinstance(result, dict):
+        print('\n\t>>result data type is dictionary<<\n')
+        print(f'\t{label}\n')
+        for key, value in result.items():
+            print(f'\t{key, value}')
 
     else:
-        print('\tsomething else than str,int,float,list or dictionary')
+        print('\n\tresult data type is not\n\t>>str/int/float/list/dictionary<<')
 
 
 '''
