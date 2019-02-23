@@ -242,5 +242,20 @@ def get_items_sold_between(table, month_from, day_from,
             row[-1], row[-2], row[-3], row[-4] = int(
                 row[-1]), int(row[-2]), int(row[-3]), int(row[-4])
             filtered_table.append(row)
-    ui.print_result(filtered_table, 'Items sold between: ')
+    ui.print_result(
+        filtered_table,
+        'Items sold between ' +
+        month_from +
+        '.' +
+        day_from +
+        '.' +
+        year_from +
+        ' --> ' +
+        month_to +
+        '.' +
+        day_to +
+        '.' +
+        year_to +
+        ' :')
     return filtered_table
+

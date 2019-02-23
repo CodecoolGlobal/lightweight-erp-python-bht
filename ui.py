@@ -66,34 +66,34 @@ def print_table(table, title_list):
 
 def print_result(result, label):
     if isinstance(result, str):
-        print('str')
-        print(result)
-        print('\n' + label + '\n')
+        print('\n\t>>str<<')
+        print('\n\t' + label + '\n')
+        print('\t'+result)
 
     elif isinstance(result, int):
-        print('int')
-        print(result)
-        print('\n' + label + '\n')
+        print('\n\t>>int<<')
+        print('\n\t' + label + '\n')
+        print('\t'+result)
 
     elif isinstance(result, list):
-        print('list')
-        print('\n' + label + '\n')
+        print('\n\t>>list<<')
+        print('\n\t' + label + '\n')
         for item in result:
-            print(item)
+            print('\t'+str(item))
 
     elif isinstance(result, dict):
-        print('dictionary')
-        print('\n' + label + '\n')
+        print('\n\t>>dictionary<<')
+        print('\n\t' + label + '\n')
         for key, value in result.items():
-            print(key, value)
+            print('\t'+key, value)
 
     elif isinstance(result, float):
-        print('float')
-        print(result)
-        print('\n' + label + '\n')
+        print('\n\t>>float<<')
+        print('\n\t' + label + '\n')
+        print('\t'+result)
 
     else:
-        print('something else than str,int,float,list or dictionary')
+        print('\tsomething else than str,int,float,list or dictionary')
 
 
 '''
