@@ -18,36 +18,37 @@
 
 
 def print_table(table, title_list):
-    title_list_lenght = []
-    for i in title_list:
-        title_list_lenght.append(len(i))
-    for lines in table:
-        for index in range(len(lines)):
-            if len(lines[index]) > title_list_lenght[index]:
-                title_list_lenght[index] = len(lines[index])
-    tw = (len(title_list) + 1) + (len(title_list) * 2) - 2
-    for i in title_list_lenght:
-        tw += i
-    print('\n\t/' + '-' * tw + '\\')
+    title_lenght = []
+    for row in title_list:
+        title_lenght.append(len(row))
+    for row in table:
+        for index in range(len(row)):
+            if len(row[index]) > title_lenght[index]:
+                title_lenght[index] = len(row[index])
+    table_width = (len(title_list) + 1) + (len(title_list) * 2) - 2
+    for row in title_lenght:
+        table_width += row
+    top_bottom_line = '-' * table_width
+    print(f'\n\t/{top_bottom_line}\\')
     string_title = ''
     string_tabulator = ''
     for index in range(len(title_list)):
         string_title += '| {0:^{1}} '.format(
-            title_list[index], title_list_lenght[index])
+            title_list[index], title_lenght[index])
         string_tabulator += '|{0:^{1}}'.format('-' *
-                                               ((title_list_lenght[index]) +
-                                                2), title_list_lenght[index])
+                                               ((title_lenght[index]) +
+                                                2), title_lenght[index])
     print('\t' + string_title + '|')
     print('\t' + string_tabulator + '|')
-    for i in table:
+    for row in table:
         string_table = ''
-        for index in range(len(i)):
+        for index in range(len(row)):
             string_table += '| {0:^{1}} '.format(
-                i[index], title_list_lenght[index])
-        print('\t' + string_table + '|')
-        if i != table[-1]:
-            print('\t' + string_tabulator + '|')
-    print('\t\\' + '-' * tw + '/\n')
+                row[index], title_lenght[index])
+        print(f'\t{string_table}|')
+        if row != table[-1]:
+            print(f'\t{string_tabulator}|')
+    print(f'\t\\{top_bottom_line}/\n')
 
 
 '''
@@ -66,34 +67,34 @@ def print_table(table, title_list):
 
 def print_result(result, label):
     if isinstance(result, str):
-        print('\n\t>>result data type is str<<\n')
+        print('\n\tresult data type is >>str<<\n')
         print(f'\t{label}\n')
         print(f'\t{result}')
 
     elif isinstance(result, int):
-        print('\n\t>>result data type is int<<\n')
+        print('\n\tresult data type is >>int<<\n')
         print(f'\t{label}\n')
         print(f'\t{result}')
 
     elif isinstance(result, float):
-        print('\n\t>>result data type is float<<\n')
+        print('\n\tresult data type is >>float<<\n')
         print(f'\t{label}\n')
         print(f'\t{result}')
 
     elif isinstance(result, list):
-        print('\n\t>>result data type is list<<\n')
+        print('\n\tresult data type is >>list<<\n')
         print(f'\t{label}\n')
         for row in result:
             print(f'\t{row}')
 
     elif isinstance(result, dict):
-        print('\n\t>>result data type is dictionary<<\n')
+        print('\n\tresult data type is >>dictionary<<\n')
         print(f'\t{label}\n')
         for key, value in result.items():
             print(f'\t{key, value}')
 
     else:
-        print('\n\tresult data type is not\n\t>>str/int/float/list/dictionary<<')
+        print('\n\tresult data type is not!\n\t>>str/int/float/list/dictionary<<')
 
 
 '''

@@ -181,7 +181,7 @@ def get_oldest_person(table):
         elif line[2] == str(oldest):
             oldest = line[2]
             oldest_name.append(line[1])
-    ui.print_result(oldest_name, "The oldest is/are: \n")
+    ui.print_result(oldest_name, "The oldest is/are: ")
     return oldest_name
 
 
@@ -212,5 +212,5 @@ def get_persons_closest_to_average(table):
             closest.append(line[1])
         elif abs(int(line[2]) - avg) == diff:
             closest.append(line[1])
-    ui.print_result(closest, '\nClosest PEOPLE to average: ')
+    ui.print_result(closest, 'Closest PEOPLE to average: ')
     return closest

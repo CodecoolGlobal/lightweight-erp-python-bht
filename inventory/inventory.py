@@ -180,7 +180,7 @@ def get_available_items(table):
     for lines in table:
         lines[-2] = str(lines[-2])
         lines[-1] = str(lines[-1])
-    ui.print_result(rtable, '\nAviable items:')
+    ui.print_result(rtable, 'Aviable items:')
     for lines in table:
         lines[-2] = int(lines[-2])
         lines[-1] = int(lines[-1])
@@ -209,5 +209,5 @@ def get_average_durability_by_manufacturers(table):
                 counter += 1
         manufacturer_dict[key] = years_total / counter
 
-    ui.print_result(manufacturer_dict, '\nAverage durability by manufacturer:')
+    ui.print_result(manufacturer_dict, 'Average durability by manufacturer:')
     return manufacturer_dict
