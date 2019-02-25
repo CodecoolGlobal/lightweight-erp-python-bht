@@ -72,39 +72,39 @@ def print_result(result, label):
         result_lenght = len(result)
         string_title = ''
         string_result = ''
-        print('\n\t/'+'-'*label_lenght+'\\')
+        print('\n\t/' + '-' * label_lenght + '\\')
         string_title += '|{0:^{1}}|'.format(label, label_lenght)
-        print('\t'+string_title)
-        print('\t|'+'-'*label_lenght+'|')
+        print('\t' + string_title)
+        print('\t|' + '-' * label_lenght + '|')
         string_result += '|{0:^{1}}|'.format(result, label_lenght)
-        print('\t'+string_result)
-        print('\t\\'+'-'*label_lenght+'/')
+        print('\t' + string_result)
+        print('\t\\' + '-' * label_lenght + '/')
 
     elif isinstance(result, int):
         label_lenght = len(str(label))
         result_lenght = len(str(result))
         string_title = ''
         string_result = ''
-        print('\n\t/'+'-'*label_lenght+'\\')
+        print('\n\t/' + '-' * label_lenght + '\\')
         string_title += '|{0:^{1}}|'.format(label, label_lenght)
-        print('\t'+string_title)
-        print('\t|'+'-'*label_lenght+'|')
+        print('\t' + string_title)
+        print('\t|' + '-' * label_lenght + '|')
         string_result += '|{0:^{1}}|'.format(result, label_lenght)
-        print('\t'+string_result)
-        print('\t\\'+'-'*label_lenght+'/')
+        print('\t' + string_result)
+        print('\t\\' + '-' * label_lenght + '/')
 
     elif isinstance(result, float):
         label_lenght = len(str(label))
         result_lenght = len(str(result))
         string_title = ''
         string_result = ''
-        print('\n\t/'+'-'*label_lenght+'\\')
+        print('\n\t/' + '-' * label_lenght + '\\')
         string_title += '|{0:^{1}}|'.format(label, label_lenght)
-        print('\t'+string_title)
-        print('\t|'+'-'*label_lenght+'|')
+        print('\t' + string_title)
+        print('\t|' + '-' * label_lenght + '|')
         string_result += '|{0:^{1}}|'.format(result, label_lenght)
-        print('\t'+string_result)
-        print('\t\\'+'-'*label_lenght+'/')
+        print('\t' + string_result)
+        print('\t\\' + '-' * label_lenght + '/')
 
     elif isinstance(result, list):
         label_lenght = len(str(label))
@@ -115,7 +115,7 @@ def print_result(result, label):
             result_lenght.append(1)
         else:
             for elements in result[0]:
-                result_lenght.append(len(elements))        
+                result_lenght.append(len(elements))
         for row in result:
             for index in range(len(row)):
                 if len(result) != 1 and len(row[index]) > result_lenght[index]:
@@ -125,29 +125,53 @@ def print_result(result, label):
         total_result_lenght += len(result_lenght) + 1 - 2
         if total_result_lenght > label_lenght:
             label_lenght = total_result_lenght
-        print('\n\t/'+'-'*label_lenght+'\\')
+        print('\n\t/' + '-' * label_lenght + '\\')
         string_label += '|{0:^{1}}|'.format(label, label_lenght)
-        print('\t'+string_label)
-        print('\t'+'|'+'-'*label_lenght+'|')
+        print('\t' + string_label)
+        print('\t' + '|' + '-' * label_lenght + '|')
         for row in result:
             string_result = ''
             string_tabulator = ''
             if len(result) == 1:
-                string_result += '| {0:^{1}} '.format(result[0], label_lenght-2)
+                string_result += '| {0:^{1}} '.format(
+                    result[0], label_lenght - 2)
             else:
                 for index in range(len(row)):
-                    string_result += '| {0:^{1}} '.format(row[index], result_lenght[index])
-                    string_tabulator += '|{0:^{1}}'.format('-'*((result_lenght[index])+2), result_lenght[index])
-            print('\t'+string_result+'|')
+                    string_result += '| {0:^{1}} '.format(
+                        row[index], result_lenght[index])
+                    string_tabulator += '|{0:^{1}}'.format(
+                        '-' * ((result_lenght[index]) + 2), result_lenght[index])
+            print('\t' + string_result + '|')
             if row != result[-1]:
-                print('\t'+string_tabulator+'|')
-        print('\t\\'+'-'*label_lenght+'/')
+                print('\t' + string_tabulator + '|')
+        print('\t\\' + '-' * label_lenght + '/')
 
     elif isinstance(result, dict):
-        print('\n\t>>dictionary<<\n')
-        print(f'\t{label}\n')
+        key_lenght = []
+        value_lenght = []
+        label_lenght = len(str(label))
+#        for key, value in result.items():
+#            print(f'\t{key, value}')
         for key, value in result.items():
-            print(f'\t{key, value}')
+            key_lenght.append(len(key))
+            value_lenght.append(len(str(value)))
+        longest_key = max(key_lenght)
+        longest_value = max(value_lenght)
+        if longest_key + longest_value + 7 > label_lenght:
+            label_lenght = longest_key + longest_value + 7
+
+        string_label = ''
+        print('\n\t/' + '-' * label_lenght + '\\')
+        string_label += '|{0:^{1}}|'.format(label, label_lenght)
+        print('\t' + string_label)
+        print('\t' + '|' + '-' * label_lenght + '|')
+        string_result = ''
+        string_tabulator = ''
+        for key, value in result.items():
+            string_result = '|{0:^{1}}'.format(key, longest_key)
+            string_result += '|{0:^{1}}'.format(value, label_lenght-longest_key-1)
+            print('\t' + string_result + '|')
+        print('\t\\'+'-'*label_lenght+'/')
 
     else:
         print('\n\t>>NOTstr/int/float/list/dictionary<<')
