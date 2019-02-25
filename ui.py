@@ -147,6 +147,7 @@ def print_result(result, label):
         print('\t\\' + '-' * label_lenght + '/')
 
     elif isinstance(result, dict):
+        print(result)
         key_lenght = []
         value_lenght = []
         label_lenght = len(str(label))
@@ -167,10 +168,15 @@ def print_result(result, label):
         print('\t' + '|' + '-' * label_lenght + '|')
         string_result = ''
         string_tabulator = ''
+        last_tabulator = 0
         for key, value in result.items():
             string_result = '|{0:^{1}}'.format(key, longest_key)
             string_result += '|{0:^{1}}'.format(value, label_lenght-longest_key-1)
             print('\t' + string_result + '|')
+            string_tabulator = '|'+'-'*longest_key+'|'+'-'*(label_lenght-longest_key-1)+'|'
+            last_tabulator += 1
+            if last_tabulator < len(result):
+                print('\t'+string_tabulator)
         print('\t\\'+'-'*label_lenght+'/')
 
     else:
