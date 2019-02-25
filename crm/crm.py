@@ -180,7 +180,7 @@ def get_longest_name_id(table):
         if lines[1] == max(maxi_names):
             ui.print_result(
                 lines[0],
-                "The ID of the customer with the longest name:")
+                "The ID of the customer with the longest name")
             return lines[0]
 
 # the question: Which customers has subscribed to the newsletter?
@@ -203,6 +203,7 @@ def get_subscribed_emails(table):
     for line in table:
         if line[-1] == "1":
             subs.append(line[2] + ";" + line[1])
-    ui.print_result(subs, "Subscribers' email addresses and their names")
+    printable_list = [[item] for item in subs]
+    ui.print_result(printable_list, "Subscribers' email addresses and their names")
 
     return subs

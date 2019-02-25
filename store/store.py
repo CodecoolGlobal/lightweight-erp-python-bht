@@ -189,7 +189,7 @@ def get_counts_by_manufacturers(table):
         else:
             dict1[line[2]] = 1
     ui.print_result(
-        dict1, 'Manufacturers have the following amount of games: ')
+        dict1, 'Manufacturers have the following amount of games')
     return dict1
 
 
@@ -213,5 +213,5 @@ def get_average_by_manufacturer(table, manufacturer):
             count = count + int(line[4])
             divider += 1
     result = count / divider
-    ui.print_result(result, 'Average amount of games in_stock: ')
+    ui.print_result(result, 'Average amount of games in_stock')
     return result

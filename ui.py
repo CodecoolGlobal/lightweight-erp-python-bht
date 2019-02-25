@@ -19,8 +19,8 @@
 
 def print_table(table, title_list):
     title_lenght = []
-    for row in title_list:
-        title_lenght.append(len(row))
+    for elements in title_list:
+        title_lenght.append(len(elements))
     for row in table:
         for index in range(len(row)):
             if len(row[index]) > title_lenght[index]:
@@ -67,34 +67,90 @@ def print_table(table, title_list):
 
 def print_result(result, label):
     if isinstance(result, str):
-        print('\n\tresult data type is >>str<<\n')
-        print(f'\t{label}\n')
-        print(f'\t{result}')
+        print(result)
+        label_lenght = len(str(label))
+        result_lenght = len(result)
+        string_title = ''
+        string_result = ''
+        print('\n\t/'+'-'*label_lenght+'\\')
+        string_title += '|{0:^{1}}|'.format(label, label_lenght)
+        print('\t'+string_title)
+        print('\t|'+'-'*label_lenght+'|')
+        string_result += '|{0:^{1}}|'.format(result, label_lenght)
+        print('\t'+string_result)
+        print('\t\\'+'-'*label_lenght+'/')
 
     elif isinstance(result, int):
-        print('\n\tresult data type is >>int<<\n')
-        print(f'\t{label}\n')
-        print(f'\t{result}')
+        label_lenght = len(str(label))
+        result_lenght = len(str(result))
+        string_title = ''
+        string_result = ''
+        print('\n\t/'+'-'*label_lenght+'\\')
+        string_title += '|{0:^{1}}|'.format(label, label_lenght)
+        print('\t'+string_title)
+        print('\t|'+'-'*label_lenght+'|')
+        string_result += '|{0:^{1}}|'.format(result, label_lenght)
+        print('\t'+string_result)
+        print('\t\\'+'-'*label_lenght+'/')
 
     elif isinstance(result, float):
-        print('\n\tresult data type is >>float<<\n')
-        print(f'\t{label}\n')
-        print(f'\t{result}')
+        label_lenght = len(str(label))
+        result_lenght = len(str(result))
+        string_title = ''
+        string_result = ''
+        print('\n\t/'+'-'*label_lenght+'\\')
+        string_title += '|{0:^{1}}|'.format(label, label_lenght)
+        print('\t'+string_title)
+        print('\t|'+'-'*label_lenght+'|')
+        string_result += '|{0:^{1}}|'.format(result, label_lenght)
+        print('\t'+string_result)
+        print('\t\\'+'-'*label_lenght+'/')
 
     elif isinstance(result, list):
-        print('\n\tresult data type is >>list<<\n')
-        print(f'\t{label}\n')
+        label_lenght = len(str(label))
+        result_lenght = []
+        total_result_lenght = 0
+        string_label = ''
+        if len(result) == 1:
+            result_lenght.append(1)
+        else:
+            for elements in result[0]:
+                result_lenght.append(len(elements))        
         for row in result:
-            print(f'\t{row}')
+            for index in range(len(row)):
+                if len(result) != 1 and len(row[index]) > result_lenght[index]:
+                    result_lenght[index] = len(row[index])
+        for items in result_lenght:
+            total_result_lenght += items + 2
+        total_result_lenght += len(result_lenght) + 1 - 2
+        if total_result_lenght > label_lenght:
+            label_lenght = total_result_lenght
+        print('\n\t/'+'-'*label_lenght+'\\')
+        string_label += '|{0:^{1}}|'.format(label, label_lenght)
+        print('\t'+string_label)
+        print('\t'+'|'+'-'*label_lenght+'|')
+        for row in result:
+            string_result = ''
+            string_tabulator = ''
+            if len(result) == 1:
+                string_result += '| {0:^{1}} '.format(result[0], label_lenght-2)
+            else:
+                for index in range(len(row)):
+                    string_result += '| {0:^{1}} '.format(row[index], result_lenght[index])
+                    string_tabulator += '|{0:^{1}}'.format('-'*((result_lenght[index])+2), result_lenght[index])
+            print('\t'+string_result+'|')
+            if row != result[-1]:
+                print('\t'+string_tabulator+'|')
+        print('\t\\'+'-'*label_lenght+'/')
 
     elif isinstance(result, dict):
-        print('\n\tresult data type is >>dictionary<<\n')
+        print('\n\t>>dictionary<<\n')
         print(f'\t{label}\n')
         for key, value in result.items():
             print(f'\t{key, value}')
 
     else:
-        print('\n\tresult data type is not!\n\t>>str/int/float/list/dictionary<<')
+        print('\n\t>>NOTstr/int/float/list/dictionary<<')
 
 
 '''

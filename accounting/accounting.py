@@ -56,7 +56,7 @@ def choose():
         # year_max = ui.get_inputs(['Please enter a year: '], '')
         which_year_max(table)
     elif option == "6":
-        avg_amount(table, ui.get_inputs(['year'], 'Which year? ')[0])
+        avg_amount(table, ui.get_inputs(['year'], '')[0])
     elif option == "0":
         return 0
     else:
@@ -190,7 +190,7 @@ def which_year_max(table):
                 dict1[line[3]] = -(int(line[5]))
     for key, value in dict1.items():
         if value == max(dict1.values()):
-            ui.print_result(key, 'The biggest profit was in: ')
+            ui.print_result(key, 'The biggest profit was in')
             return int(key)
 
 
@@ -229,5 +229,5 @@ def avg_amount(table, year):
                     count += 1
     for value in dict1.values():
         avg = value / count
-        ui.print_result(avg, f'The average profit in {year} is: ')
+        ui.print_result(avg, f'The average profit in {year} is')
         return avg

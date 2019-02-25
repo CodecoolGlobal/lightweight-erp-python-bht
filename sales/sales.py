@@ -204,7 +204,7 @@ def get_lowest_price_item_id(table):
             if int(line[2]) == lowest_price:
                 id_.append(line[0])
                 title.append(line[1])
-    ui.print_result(sort_list(id_)[-1], 'The ID of lowest sold is:')
+    ui.print_result(sort_list(id_)[-1], 'The ID of lowest sold is')
     return sort_list(id_)[-1]
 
 
@@ -244,17 +244,16 @@ def get_items_sold_between(table, month_from, day_from,
         filtered_table,
         'Items sold between ' +
         str(month_from) +
-        '.' +
+        '/' +
         str(day_from) +
-        '.' +
+        '/' +
         str(year_from) +
         '-' +
         str(month_to) +
-        '.' +
+        '/' +
         str(day_to) +
-        '.' +
-        str(year_to) +
-        ' :')
+        '/' +
+        str(year_to))
     for row in table:
         row[-1], row[-2], row[-3], row[-4] = int(
             row[-1]), int(row[-2]), int(row[-3]), int(row[-4])
