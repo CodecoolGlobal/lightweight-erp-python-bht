@@ -147,7 +147,6 @@ def print_result(result, label):
         print('\t\\' + '-' * label_lenght + '/')
 
     elif isinstance(result, dict):
-        print(result)
         key_lenght = []
         value_lenght = []
         label_lenght = len(str(label))
