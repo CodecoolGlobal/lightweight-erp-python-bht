@@ -38,7 +38,7 @@ def start_module():
 def choose():
     inputs = ui.get_inputs(["Please enter a number: "], "")
     option = inputs[0]
-    table = data_manager.get_table_from_file('inventory/inventory.csv')
+    # table = data_manager.get_table_from_file('inventory/inventory.csv')
     if option == "1":
         get_the_last_buyer_name()
     elif option == "2":
