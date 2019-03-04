@@ -26,8 +26,47 @@ def start_module():
     """
 
     # your code
+    while True:
+        handle_menu()
+        try:
+            if choose() == 0:
+                break
+        except KeyError as err:
+            ui.print_error_message(str(err))
 
-    pass
+
+def choose():
+    inputs = ui.get_inputs(["Please enter a number: "], "")
+    option = inputs[0]
+    table = data_manager.get_table_from_file('inventory/inventory.csv')
+    if option == "1":
+        get_the_last_buyer_name()
+    elif option == "2":
+        get_the_last_buyer_id()
+    elif option == "3":
+        get_the_buyer_name_spent_most_and_the_money_spent()
+    elif option == "4":
+        get_the_buyer_id_spent_most_and_the_money_spent()
+        update(table, id_[0])
+    elif option == "5":
+        get_the_most_frequent_buyers_names()
+    elif option == "6":
+        get_the_most_frequent_buyers_ids()
+    elif option == "0":
+        return 0
+    else:
+        raise KeyError("There is no such option.")
+
+
+def handle_menu():
+    options = ["Last buyer name",
+               "Last buyer id",
+               "Most spent buyer name",
+               "Most spent buyer id",
+               "Most ferquent buyer name",
+               "Most frequent buyer id"]
+
+    ui.print_menu("Data analyser", options, "Back to main menu")
 
 
 def get_the_last_buyer_name():
