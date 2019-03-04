@@ -38,7 +38,7 @@ def start_module():
 def choose():
     inputs = ui.get_inputs(["Please enter a number: "], "")
     option = inputs[0]
-    table = data_manager.get_table_from_file('sales/sales.csv')
+    table = data_manager.get_table_from_file('inventory/inventory.csv')
     if option == "1":
         get_the_last_buyer_name()
     elif option == "2":
@@ -48,9 +48,9 @@ def choose():
     elif option == "4":
         get_the_buyer_id_spent_most_and_the_money_spent()
     elif option == "5":
-        get_the_most_frequent_buyers_names(num=1)
+        get_the_most_frequent_buyers_names()
     elif option == "6":
-        get_the_most_frequent_buyers_ids(num=1)
+        get_the_most_frequent_buyers_ids()
     elif option == "0":
         return 0
     else:
@@ -59,13 +59,13 @@ def choose():
 
 def handle_menu():
     options = ["Last buyer name",
-               "Last buyer ID",
-               "Customer most spent name",
-               "Customer most spent ID",
-               "Frequent buyers' names",
-               "Frequent buyers' IDs"]
+               "Last buyer id",
+               "Most spent buyer name",
+               "Most spent buyer id",
+               "Most ferquent buyer name",
+               "Most frequent buyer id"]
 
-    ui.print_menu("Data Analyser", options, "Back to main menu")
+    ui.print_menu("Data analyser", options, "Back to main menu")
 
 
 def get_the_last_buyer_name():
