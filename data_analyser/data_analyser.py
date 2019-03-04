@@ -47,7 +47,6 @@ def choose():
         get_the_buyer_name_spent_most_and_the_money_spent()
     elif option == "4":
         get_the_buyer_id_spent_most_and_the_money_spent()
-        update(table, id_[0])
     elif option == "5":
         get_the_most_frequent_buyers_names()
     elif option == "6":
