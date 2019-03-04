@@ -78,9 +78,9 @@ def choose():
 
 def handle_menu():
     options = ["Show table",
-               "Add ithem",
-               "Remove ithem",
-               "Update ithem",
+               "Add item",
+               "Remove item",
+               "Update item",
                "Lowest price item",
                "Items sold between"]
 
