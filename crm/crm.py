@@ -54,6 +54,10 @@ def choose():
         get_longest_name_id(table)
     elif option == "6":
         get_subscribed_emails(table)
+    elif option == "7":
+        get_name_by_id(id)
+    elif option == "8":
+        get_name_by_id_from_table(table, id)
     elif option == "0":
         return 0
     else:
@@ -66,7 +70,9 @@ def handle_menu():
                "Remove item",
                "Update item",
                "ID of the longest name",
-               "List of customers who subscribed"]
+               "List of customers who subscribed",
+               "Get name by id",
+               "Get name by id from table"]
 
     ui.print_menu("CRM", options, "Back to main menu")
 
