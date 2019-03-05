@@ -54,6 +54,12 @@ def choose():
         get_longest_name_id(table)
     elif option == "6":
         get_subscribed_emails(table)
+    elif option == "7":
+        id_ = ui.get_inputs(['Please enter an id: '], '')
+        get_name_by_id(id_[0])
+    elif option == "8":
+        id_ = ui.get_inputs(['Please enter an id: '], '')
+        get_name_by_id_from_table(table, id_[0])
     elif option == "0":
         return 0
     else:
@@ -66,7 +72,9 @@ def handle_menu():
                "Remove item",
                "Update item",
                "ID of the longest name",
-               "List of customers who subscribed"]
+               "List of customers who subscribed",
+               "Customer's name for a given ID with Data Manager",
+               "Customer's name for a given ID"]
 
     ui.print_menu("CRM", options, "Back to main menu")
 
@@ -183,10 +191,6 @@ def get_longest_name_id(table):
                 "The ID of the customer with the longest name")
             return lines[0]
 
-# the question: Which customers has subscribed to the newsletter?
-# return type: list of strings (where string is like email+separator+name,
-# separator=";")
-
 
 def get_subscribed_emails(table):
     """
@@ -226,7 +230,10 @@ def get_name_by_id(id):
     Returns:
         str: the name of the customer
     """
-
+    table = data_manager.get_table_from_file('crm/customers.csv')
+    for lines in table:
+        if lines[0] == id:
+            return lines[1]
     # your code
 
 
@@ -242,5 +249,9 @@ def get_name_by_id_from_table(table, id):
     Returns:
         str: the name of the customer
     """
-
+    for lines in table:
+        if lines[0] == id:
+            ui.print_result(lines[1], 'Name of customer with given ID: ')
+            return lines[1]
+    
     # your code
