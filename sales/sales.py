@@ -333,7 +333,7 @@ def get_title_by_id(id):
     table = data_manager.get_table_from_file('sales/sales.csv')
     for row in table:
         if row[0] == id:
-            result = row[1]
+            result += row[1]
     ui.print_result(result, 'The title of the given ID is')
     return result
 
@@ -351,14 +351,17 @@ def get_title_by_id_from_table(table, id):
         str: the title of the item
     """
 
+
+    
+
     # your code
 
-    result = []
+    result = ''
     for row in table:
         if row[0] == id:
-            result.append(row[1])
+            result += row[1]
     ui.print_result(result, 'The title of the given ID is')
-    return (result, 'Get title by id')
+    return result
 
 
 def get_item_id_sold_last():

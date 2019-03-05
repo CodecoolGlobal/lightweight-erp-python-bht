@@ -67,9 +67,13 @@ def print_table(table, title_list):
 
 def print_result(result, label):
     if isinstance(result, str):
-        print(result)
+        print('string')
         label_lenght = len(str(label))
         result_lenght = len(result)
+        if label_lenght > result_lenght:
+            result_lenght = label_lenght
+        if result_lenght > label_lenght:
+            label_lenght = result_lenght
         string_title = ''
         string_result = ''
         print('\n\t/' + '-' * (label_lenght+2) + '\\')
@@ -81,8 +85,13 @@ def print_result(result, label):
         print('\t\\' + '-' * (label_lenght+2) + '/')
 
     elif isinstance(result, int):
+        print('integer')
         label_lenght = len(str(label))
         result_lenght = len(str(result))
+        if label_lenght > result_lenght:
+            result_lenght = label_lenght
+        if result_lenght > label_lenght:
+            label_lenght = result_lenght
         string_title = ''
         string_result = ''
         print('\n\t/' + '-' * (label_lenght+2) + '\\')
@@ -94,8 +103,13 @@ def print_result(result, label):
         print('\t\\' + '-' * (label_lenght+2) + '/')
 
     elif isinstance(result, float):
+        print('float')
         label_lenght = len(str(label))
         result_lenght = len(str(result))
+        if label_lenght > result_lenght:
+            result_lenght = label_lenght
+        if result_lenght > label_lenght:
+            label_lenght = result_lenght
         string_title = ''
         string_result = ''
         print('\n\t/' + '-' * (label_lenght+2) + '\\')
@@ -107,6 +121,7 @@ def print_result(result, label):
         print('\t\\' + '-' * (label_lenght+2) + '/')
 
     elif isinstance(result, list):
+        print('list')
         label_lenght = len(str(label))
         result_lenght = []
         total_result_lenght = 0
@@ -147,6 +162,7 @@ def print_result(result, label):
         print('\t\\' + '-' * label_lenght + '/')
 
     elif isinstance(result, dict):
+        print('dictionary')
         key_lenght = []
         value_lenght = []
         label_lenght = len(str(label))
