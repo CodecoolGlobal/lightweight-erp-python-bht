@@ -237,7 +237,6 @@ def get_name_by_id(id):
     # your code
 
 
-
 def get_name_by_id_from_table(table, id):
     """
     Returns the name (str) of the customer with the given id (str) on None om case of non-existing id.
@@ -253,5 +252,4 @@ def get_name_by_id_from_table(table, id):
         if lines[0] == id:
             ui.print_result(lines[1], 'Name of customer with given ID: ')
             return lines[1]
-    
     # your code

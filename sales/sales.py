@@ -70,6 +70,38 @@ def choose():
             month_to[0],
             day_to[0],
             year_to[0])
+    elif option == "7":
+        id = ui.get_inputs(['Please enter the specified id: '], '')
+        get_title_by_id(id[0])
+    elif option == "8":
+        id = ui.get_inputs(['Please enter the specified id: '], '')
+        get_title_by_id_from_table(table, id[0])
+    elif option == "9":
+        get_item_id_sold_last
+    elif option == "10":
+        get_item_id_sold_last_from_table(table)
+    elif option == "11":
+        get_item_title_sold_last_from_table(table)
+    elif option == "12":
+        get_the_sum_of_prices(item_)
+    elif option == "13":
+        get_the_sum_of_prices_from_table(table, item_ids)
+    elif option == "14":
+        get_customer_id_by_sale_id(sale_id)
+    elif option == "15":
+        get_customer_id_by_sale_id_from_table(table, sale_id)
+    elif option == "16":
+        get_all_customer_ids()
+    elif option == "17":
+        get_all_customer_ids_from_table(table)
+    elif option == "18":
+        get_all_sales_ids_for_customer_ids()
+    elif option == "19":
+        get_all_sales_ids_for_customer_ids_form_table(table)
+    elif option == "20":
+        get_num_of_sales_per_customer_ids()
+    elif option == "21":
+        get_num_of_sales_per_customer_ids_from_table(table)
     elif option == "0":
         return 0
     else:
@@ -82,7 +114,22 @@ def handle_menu():
                "Remove item",
                "Update item",
                "Lowest price item",
-               "Items sold between"]
+               "Items sold between",
+               "Get title by id",
+               "Get title by id from table",
+               "Get item id sold last",
+               "Get item id sold last from table",
+               "Get item title sold last from table",
+               "Get the sum of prices",
+               "Get the sum of prices from table",
+               "Get customer id by sale id",
+               "Get customer id by sale id from table",
+               "Get all customer ids",
+               "Get all customer ids from table",
+               "Get all sales ids for customer ids",
+               "Get all sales ids for customer ids form table",
+               "Get num of sales per customer ids",
+               "Get num of sales per customer ids from table"]
 
     ui.print_menu("Sales", options, "Back to main menu")
 
@@ -98,7 +145,7 @@ def show_table(table):
         None
     """
 
-    ui.print_table(table, ['id', 'title', 'price', 'month', 'day', 'year'])
+    ui.print_table(table, ['id', 'title', 'price', 'month', 'day', 'year', 'sale id'])
 
 
 def add(table):
@@ -235,6 +282,8 @@ def get_items_sold_between(table, month_from, day_from,
     Returns:
         list: list of lists (the filtered table)
     """
+    # your code
+    
     filtered_table = []
     from_date = (int(year_from), int(month_from), int(day_from))
     to_date = (int(year_to), int(month_to), int(day_to))
@@ -257,10 +306,8 @@ def get_items_sold_between(table, month_from, day_from,
         str(year_to))
     for row in table:
         row[5], row[4], row[3], row[2] = int(
-            row[5]), int(row[4]), int(row[3]), int(row[4])
+            row[5]), int(row[4]), int(row[3]), int(row[2])
     return filtered_table
-
-    # your code
 
 
 # functions supports data abalyser
@@ -282,6 +329,14 @@ def get_title_by_id(id):
 
     # your code
 
+    result = []
+    table = data_manager.get_table_from_file('sales/sales.csv')
+    for row in table:
+        if row[0] == id:
+            result.append(row[1])
+    ui.print_result(result, 'The title of the given ID is')
+    return (result, 'Get title by id')
+
 
 def get_title_by_id_from_table(table, id):
 
@@ -297,6 +352,13 @@ def get_title_by_id_from_table(table, id):
     """
 
     # your code
+
+    result = []
+    for row in table:
+        if row[0] == id:
+            result.append(row[1])
+    ui.print_result(result, 'The title of the given ID is')
+    return (result, 'Get title by id')
 
 
 def get_item_id_sold_last():
