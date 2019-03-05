@@ -72,10 +72,10 @@ def choose():
             year_to[0])
     elif option == "7":
         id = ui.get_inputs(['Please enter the specified id: '], '')
-        get_title_by_id(table, id[0])
+        get_title_by_id(id[0])
     elif option == "8":
         id = ui.get_inputs(['Please enter the specified id: '], '')
-        get_title_by_id_from_table(id)
+        get_title_by_id_from_table(table, id[0])
     elif option == "9":
         get_item_id_sold_last
     elif option == "10":
@@ -314,7 +314,7 @@ def get_items_sold_between(table, month_from, day_from,
 # --------------------------------
 
 
-def get_title_by_id(table, id):
+def get_title_by_id(id):
 
     """
     Reads the table with the help of the data_manager module.
@@ -330,6 +330,7 @@ def get_title_by_id(table, id):
     # your code
 
     result = []
+    table = data_manager.get_table_from_file('sales/sales.csv')
     for row in table:
         if row[0] == id:
             result.append(row[1])
@@ -337,7 +338,7 @@ def get_title_by_id(table, id):
     return (result, 'Get title by id')
 
 
-def get_title_by_id_from_table(id):
+def get_title_by_id_from_table(table, id):
 
     """
     Returns the title (str) of the item with the given id (str) on None om case of non-existing id.
@@ -353,12 +354,11 @@ def get_title_by_id_from_table(id):
     # your code
 
     result = []
-        
-        for row in table:
-            if row[0] == id:
-                result.append(row[1])
-        ui.print_result(result, 'The title of the given ID is')
-        return (result, 'Get title by id')
+    for row in table:
+        if row[0] == id:
+            result.append(row[1])
+    ui.print_result(result, 'The title of the given ID is')
+    return (result, 'Get title by id')
 
 
 def get_item_id_sold_last():
