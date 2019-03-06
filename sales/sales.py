@@ -77,7 +77,7 @@ def choose():
         id = ui.get_inputs(['Please enter the specified id: '], '')
         get_title_by_id_from_table(table, id[0])
     elif option == "9":
-        get_item_id_sold_last
+        get_item_id_sold_last()
     elif option == "10":
         get_item_id_sold_last_from_table(table)
     elif option == "11":
@@ -374,6 +374,15 @@ def get_item_id_sold_last():
     """
 
     # your code
+    table = data_manager.get_table_from_file('sales/sales.csv')
+    date = (1970, 1, 1)
+    item_id = ''
+    for row in table:
+        if date < (int(row[5]), int(row[3]), int(row[4])):
+            date = (int(row[5]), int(row[3]), int(row[4]))
+            item_id = row[0]
+    ui.print_result(item_id, 'The last sold item is')
+    return item_id
 
 
 def get_item_id_sold_last_from_table(table):
@@ -388,6 +397,14 @@ def get_item_id_sold_last_from_table(table):
     """
 
     # your code
+    date = (1970, 1, 1)
+    item_id = ''
+    for row in table:
+        if date < (int(row[5]), int(row[3]), int(row[4])):
+            date = (int(row[5]), int(row[3]), int(row[4]))
+            item_id = row[0]
+    ui.print_result(item_id, 'The last sold item is')
+    return item_id
 
 
 def get_item_title_sold_last_from_table(table):
