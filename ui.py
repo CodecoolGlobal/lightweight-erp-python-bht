@@ -126,11 +126,8 @@ def print_result(result, label):
         result_lenght = []
         total_result_lenght = 0
         string_label = ''
-        if len(result) == 1:
-            result_lenght.append(1)
-        else:
-            for elements in result[0]:
-                result_lenght.append(len(elements))
+        for elements in result[0]:
+            result_lenght.append(len(elements))
         for row in result:
             for index in range(len(row)):
                 if len(result) != 1 and len(row[index]) > result_lenght[index]:
@@ -147,9 +144,10 @@ def print_result(result, label):
         for row in result:
             string_result = ''
             string_tabulator = ''
-            if len(result) == 1:
-                string_result += '| {0:^{1}} '.format(
-                    result[0], label_lenght - 2)
+            if len(result[0]) == 1:
+                for index in range(len(row)):
+                    string_result += '| {0:^{1}} '.format(row[index], (label_lenght - 2))
+                    string_tabulator += '|' + '-' * label_lenght
             else:
                 for index in range(len(row)):
                     string_result += '| {0:^{1}} '.format(
@@ -166,8 +164,6 @@ def print_result(result, label):
         key_lenght = []
         value_lenght = []
         label_lenght = len(str(label))
-#        for key, value in result.items():
-#            print(f'\t{key, value}')
         for key, value in result.items():
             key_lenght.append(len(key))
             value_lenght.append(len(str(value)))
