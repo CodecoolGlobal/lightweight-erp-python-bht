@@ -189,6 +189,24 @@ def print_result(result, label):
             if last_tabulator < len(result):
                 print('\t'+string_tabulator)
         print('\t\\'+'-'*(label_lenght+2)+'/')
+    
+    elif isinstance(result, tuple):
+        print('tuple')
+        label_lenght = len(str(label))
+        result_lenght = len(result)
+        if result_lenght > label_lenght:
+            label_lenght = result_lenght
+        string_title = ''
+        string_result = ''
+        print('\n\t/' + '-' * (label_lenght+2) + '\\')
+        string_title += '| {0:^{1}} |'.format(label, label_lenght)
+        print('\t' + string_title)
+        print('\t|' + '-' * (label_lenght+2) + '|')
+        for item in result:
+            string_result += '| {0:^{1}} |'.format(item, label_lenght)
+            print('\t' + string_result)
+        print('\t\\' + '-' * (label_lenght+2) + '/')
+
 
     else:
         print('\n\t>>NOTstr/int/float/list/dictionary<<')

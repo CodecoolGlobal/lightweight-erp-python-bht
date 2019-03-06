@@ -81,7 +81,6 @@ def get_the_last_buyer_name():
     buyer_id = sales.get_customer_id_by_sale_id(sale_id)
     buyer_name = crm.get_name_by_id(buyer_id)
     return buyer_name
-    
 
 
 def get_the_last_buyer_id():
