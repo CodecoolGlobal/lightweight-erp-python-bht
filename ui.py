@@ -209,7 +209,7 @@ def print_result(result, label):
 
 
     else:
-        print('\n\t>>NOTstr/int/float/list/dictionary<<')
+        print('\n\t>>NOTstr/int/float/list/dictionary/tuple<<')
 
 
 '''
