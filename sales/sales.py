@@ -587,6 +587,12 @@ def get_num_of_sales_per_customer_ids():
          dict of (key, value): (customer_id (str), num_of_sales (number))
     """
 
+    table = data_manager.get_table_from_file('sales/sales.csv')
+    ids = {}
+    for row in table:
+        ids[row[6]] = ids.get(row[6], 0) + 1
+    ui.print_result(ids, 'Number of sales per customer IDs')
+    return ids
     # 20
 
 
