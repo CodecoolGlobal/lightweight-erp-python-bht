@@ -416,6 +416,14 @@ def get_item_title_sold_last_from_table(table):
     """
 
     # your code
+    date = (1970, 1, 1)
+    title = ''
+    for row in table:
+        if date < (int(row[5]), int(row[3]), int(row[4])):
+            date = (int(row[5]), int(row[3]), int(row[4]))
+            title = row[1]
+    ui.print_result(title, 'The last sold item is')
+    return title
 
 
 def get_the_sum_of_prices(item_ids):
