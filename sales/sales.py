@@ -91,9 +91,11 @@ def choose():
         item_ids = ui.get_inputs(['Enter ID ' + str(index + 1) + ': ' for index in range(int(item_ids_no[0]))], '')
         get_the_sum_of_prices_from_table(table, item_ids)
     elif option == "14":
-        get_customer_id_by_sale_id(sale_id)
+        sale_id = ui.get_inputs(['Please enter the sale id: '], '')
+        get_customer_id_by_sale_id(sale_id[0])
     elif option == "15":
-        get_customer_id_by_sale_id_from_table(table, sale_id)
+        sale_id = ui.get_inputs(['Please enter the sale id: '], '')
+        get_customer_id_by_sale_id_from_table(table, sale_id[0])
     elif option == "16":
         get_all_customer_ids()
     elif option == "17":
@@ -486,6 +488,14 @@ def get_customer_id_by_sale_id(sale_id):
     """
 
     # 14
+    table = data_manager.get_table_from_file('sales/sales.csv')
+    cust_id = ''
+    for row in table:
+        if row[0] == sale_id:
+            cust_id = row[6]
+    if cust_id == '':
+        return None
+    return cust_id
 
 
 def get_customer_id_by_sale_id_from_table(table, sale_id):
@@ -501,6 +511,14 @@ def get_customer_id_by_sale_id_from_table(table, sale_id):
     """
 
     # 15
+    cust_id = ''
+    for row in table:
+        if row[0] == sale_id:
+            cust_id = row[6]
+    if cust_id == '':
+        cust_id = 'None'
+    ui.print_result(cust_id, 'Customer ID')
+    return cust_id
 
 
 def get_all_customer_ids():
@@ -578,6 +596,12 @@ def get_num_of_sales_per_customer_ids():
          dict of (key, value): (customer_id (str), num_of_sales (number))
     """
 
+    table = data_manager.get_table_from_file('sales/sales.csv')
+    ids = {}
+    for row in table:
+        ids[row[6]] = ids.get(row[6], 0) + 1
+    ui.print_result(ids, 'Number of sales per customer IDs')
+    return ids
     # 20
 
 
