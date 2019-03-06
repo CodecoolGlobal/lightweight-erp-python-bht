@@ -593,7 +593,7 @@ def get_all_sales_ids_for_customer_ids_form_table(table):
     ids = {}
     for row in table:
         ids[row[6]] = ids.get(row[6], []) + [row[0]]
-    ui.print_result(ids, 'Sales IDs per customer')
+    #ui.print_result(ids, 'Sales IDs per customer')
     return ids
 
 
