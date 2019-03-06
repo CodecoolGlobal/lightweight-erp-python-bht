@@ -559,6 +559,12 @@ def get_all_sales_ids_for_customer_ids():
     """
 
     # 18
+    table = data_manager.get_table_from_file('sales/sales.csv')
+    ids = {}
+    for row in table:
+        ids[row[6]] = ids.get(row[6], []) + [row[0]]
+    return ids
+
 
 
 def get_all_sales_ids_for_customer_ids_form_table(table):
@@ -575,6 +581,11 @@ def get_all_sales_ids_for_customer_ids_form_table(table):
     """
 
     # 19
+    ids = {}
+    for row in table:
+        ids[row[6]] = ids.get(row[6], []) + [row[0]]
+    ui.print_result(ids, 'Sales IDs per customer')
+    return ids
 
 
 def get_num_of_sales_per_customer_ids():
