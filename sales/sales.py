@@ -83,10 +83,12 @@ def choose():
     elif option == "11":
         get_item_title_sold_last_from_table(table)
     elif option == "12":
-        get_the_sum_of_prices(item_)
+        item_ids_no = ui.get_inputs(['How many IDs do you want to enter? '], '')
+        item_ids = ui.get_inputs(['Enter ID ' + str(index + 1) + ': ' for index in range(int(item_ids_no[0]))], '')
+        get_the_sum_of_prices(item_ids)
     elif option == "13":
         item_ids_no = ui.get_inputs(['How many IDs do you want to enter? '], '')
-        item_ids = ui.get_inputs(['Enter ID ' + str(index + 1) + ': ' for index in range(int(item_ids_no[0]))], '') # this needs revision
+        item_ids = ui.get_inputs(['Enter ID ' + str(index + 1) + ': ' for index in range(int(item_ids_no[0]))], '')
         get_the_sum_of_prices_from_table(table, item_ids)
     elif option == "14":
         get_customer_id_by_sale_id(sale_id)
@@ -239,7 +241,7 @@ def get_lowest_price_item_id(table):
          string: id
     """
 
-    # your code
+    # 5
     lowest_price = 100
     id_ = []
     title = []
@@ -284,7 +286,7 @@ def get_items_sold_between(table, month_from, day_from,
     Returns:
         list: list of lists (the filtered table)
     """
-    # your code
+    # 6
     
     filtered_table = []
     from_date = (int(year_from), int(month_from), int(day_from))
@@ -329,7 +331,7 @@ def get_title_by_id(id):
         str: the title of the item
     """
 
-    # your code
+    # 7
 
     result = ''
     table = data_manager.get_table_from_file('sales/sales.csv')
@@ -353,7 +355,7 @@ def get_title_by_id_from_table(table, id):
         str: the title of the item
     """
     
-    # your code
+    # 8
 
     result = ''
     for row in table:
@@ -372,7 +374,7 @@ def get_item_id_sold_last():
         str: the _id_ of the item that was sold most recently.
     """
 
-    # your code
+    # 9
     table = data_manager.get_table_from_file('sales/sales.csv')
     date = (1970, 1, 1)
     item_id = ''
@@ -395,7 +397,7 @@ def get_item_id_sold_last_from_table(table):
         str: the _id_ of the item that was sold most recently.
     """
 
-    # your code
+    # 10
     date = (1970, 1, 1)
     item_id = ''
     for row in table:
@@ -417,7 +419,7 @@ def get_item_title_sold_last_from_table(table):
         str: the _title_ of the item that was sold most recently.
     """
 
-    # your code
+    # 11
     date = (1970, 1, 1)
     title = ''
     for row in table:
@@ -440,12 +442,12 @@ def get_the_sum_of_prices(item_ids):
         number: the sum of the items' prices
     """
 
-    # your code
+    # 12
     table = data_manager.get_table_from_file('sales/sales.csv')
     sum_of_items = 0
     for row in table:
         if row[0] in item_ids:
-            sum_of_items += row[2]
+            sum_of_items += int(row[2])
     ui.print_result(sum_of_items, 'The sum in USD')
     return sum_of_items
 
@@ -462,7 +464,13 @@ def get_the_sum_of_prices_from_table(table, item_ids):
         number: the sum of the items' prices
     """
 
-    # your code
+    # 13
+    sum_of_items = 0
+    for row in table:
+        if row[0] in item_ids:
+            sum_of_items += int(row[2])
+    ui.print_result(sum_of_items, 'The sum in USD')
+    return sum_of_items
 
 
 def get_customer_id_by_sale_id(sale_id):
@@ -477,7 +485,7 @@ def get_customer_id_by_sale_id(sale_id):
          str: customer_id that belongs to the given sale id
     """
 
-    # your code
+    # 14
 
 
 def get_customer_id_by_sale_id_from_table(table, sale_id):
@@ -492,7 +500,7 @@ def get_customer_id_by_sale_id_from_table(table, sale_id):
         str: customer_id that belongs to the given sale id
     """
 
-    # your code
+    # 15
 
 
 def get_all_customer_ids():
@@ -503,7 +511,7 @@ def get_all_customer_ids():
          set of str: set of customer_ids that are present in the table
     """
 
-    # your code
+    # 16
 
 
 def get_all_customer_ids_from_table(table):
@@ -516,7 +524,7 @@ def get_all_customer_ids_from_table(table):
          set of str: set of customer_ids that are present in the table
     """
 
-    # your code
+    # 17
 
 
 def get_all_sales_ids_for_customer_ids():
@@ -532,7 +540,7 @@ def get_all_sales_ids_for_customer_ids():
             all the sales id belong to the given customer_id
     """
 
-    # your code
+    # 18
 
 
 def get_all_sales_ids_for_customer_ids_form_table(table):
@@ -548,7 +556,7 @@ def get_all_sales_ids_for_customer_ids_form_table(table):
          all the sales id belong to the given customer_id
     """
 
-    # your code
+    # 19
 
 
 def get_num_of_sales_per_customer_ids():
@@ -561,7 +569,7 @@ def get_num_of_sales_per_customer_ids():
          dict of (key, value): (customer_id (str), num_of_sales (number))
     """
 
-    # your code
+    # 20
 
 
 def get_num_of_sales_per_customer_ids_from_table(table):
@@ -575,4 +583,4 @@ def get_num_of_sales_per_customer_ids_from_table(table):
          dict of (key, value): (customer_id (str), num_of_sales (number))
     """
 
-    # your code
+    # 21
