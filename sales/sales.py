@@ -85,6 +85,8 @@ def choose():
     elif option == "12":
         get_the_sum_of_prices(item_)
     elif option == "13":
+        item_ids_no = ui.get_inputs(['How many IDs do you want to enter? '], '')
+        item_ids = ui.get_inputs(['Enter ID ' + str(index + 1) + ': ' for index in range(int(item_ids_no[0]))], '') # this needs revision
         get_the_sum_of_prices_from_table(table, item_ids)
     elif option == "14":
         get_customer_id_by_sale_id(sale_id)
@@ -439,6 +441,13 @@ def get_the_sum_of_prices(item_ids):
     """
 
     # your code
+    table = data_manager.get_table_from_file('sales/sales.csv')
+    sum_of_items = 0
+    for row in table:
+        if row[0] in item_ids:
+            sum_of_items += row[2]
+    ui.print_result(sum_of_items, 'The sum in USD')
+    return sum_of_items
 
 
 def get_the_sum_of_prices_from_table(table, item_ids):
