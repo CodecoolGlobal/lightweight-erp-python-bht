@@ -340,7 +340,6 @@ def get_title_by_id(id):
     for row in table:
         if row[0] == id:
             result += row[1]
-    ui.print_result(result, 'The title of the given ID is')
     return result
 
 
@@ -384,7 +383,6 @@ def get_item_id_sold_last():
         if date < (int(row[5]), int(row[3]), int(row[4])):
             date = (int(row[5]), int(row[3]), int(row[4]))
             item_id = row[0]
-    ui.print_result(item_id, 'The last sold item is')
     return item_id
 
 
@@ -450,7 +448,6 @@ def get_the_sum_of_prices(item_ids):
     for row in table:
         if row[0] in item_ids:
             sum_of_items += int(row[2])
-    ui.print_result(sum_of_items, 'The sum in USD')
     return sum_of_items
 
 
@@ -572,8 +569,6 @@ def get_all_sales_ids_for_customer_ids():
     for row in table:
         ids[row[6]] = ids.get(row[6], []) + [row[0]]
     return ids
-
-
 
 
 def get_all_sales_ids_for_customer_ids_form_table(table):
