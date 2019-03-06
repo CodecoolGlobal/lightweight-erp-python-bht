@@ -350,10 +350,7 @@ def get_title_by_id_from_table(table, id):
     Returns:
         str: the title of the item
     """
-
-
     
-
     # your code
 
     result = ''
