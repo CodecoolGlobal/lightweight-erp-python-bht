@@ -531,6 +531,10 @@ def get_all_customer_ids():
 
     # 16
 
+    table = data_manager.get_table_from_file('sales/sales.csv')
+    result = {i[6] for i in table}
+    return result
+
 
 def get_all_customer_ids_from_table(table):
     """
@@ -543,6 +547,10 @@ def get_all_customer_ids_from_table(table):
     """
 
     # 17
+
+    result = {i[6] for i in table}
+    ui.print_result([[i] for i in result], 'All customer IDs from table')
+    return result
 
 
 def get_all_sales_ids_for_customer_ids():
@@ -564,6 +572,7 @@ def get_all_sales_ids_for_customer_ids():
     for row in table:
         ids[row[6]] = ids.get(row[6], []) + [row[0]]
     return ids
+
 
 
 
@@ -598,6 +607,12 @@ def get_num_of_sales_per_customer_ids():
          dict of (key, value): (customer_id (str), num_of_sales (number))
     """
 
+    table = data_manager.get_table_from_file('sales/sales.csv')
+    ids = {}
+    for row in table:
+        ids[row[6]] = ids.get(row[6], 0) + 1
+    ui.print_result(ids, 'Number of sales per customer IDs')
+    return ids
     # 20
 
 
@@ -613,3 +628,7 @@ def get_num_of_sales_per_customer_ids_from_table(table):
     """
 
     # 21
+    ids = {}
+    for row in table:
+        ids[row[6]] = ids.get(row[6], 0) + 1
+    return ids
