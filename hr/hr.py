@@ -212,5 +212,5 @@ def get_persons_closest_to_average(table):
             closest.append(line[1])
         elif abs(int(line[2]) - avg) == diff:
             closest.append(line[1])
-    ui.print_result(closest, 'Closest people to average')
+    ui.print_result(str(closest[0]), 'Closest people to average')
     return closest
