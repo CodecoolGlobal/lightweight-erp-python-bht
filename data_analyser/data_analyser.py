@@ -112,7 +112,9 @@ def get_the_buyer_name_spent_most_and_the_money_spent():
         if value == max(most_sales.values()):
             id_ = key
     name = crm.get_name_by_id(id_)
-    return (name, max(most_sales.values()))
+    all_sale_ids = sales.get_all_sales_ids_for_customer_ids()
+    sum_sales = sales.get_the_sum_of_prices(all_sale_ids[id_])
+    return (name, sum_sales)
 
 
 def get_the_buyer_id_spent_most_and_the_money_spent():
@@ -124,6 +126,14 @@ def get_the_buyer_id_spent_most_and_the_money_spent():
     """
 
     # 4
+    most_sales = sales.get_num_of_sales_per_customer_ids()
+    id_ = ''
+    for key, value in most_sales.items():
+        if value == max(most_sales.values()):
+            id_ = key
+    all_sale_ids = sales.get_all_sales_ids_for_customer_ids()
+    sum_sales = sales.get_the_sum_of_prices(all_sale_ids[id_])
+    return (id_, sum_sales)
 
 
 def get_the_most_frequent_buyers_names(num=1):
