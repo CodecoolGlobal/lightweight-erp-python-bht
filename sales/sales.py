@@ -103,7 +103,7 @@ def choose():
     elif option == "18":
         get_all_sales_ids_for_customer_ids()
     elif option == "19":
-        get_all_sales_ids_for_customer_ids_form_table(table)
+        get_all_sales_ids_for_customer_ids_from_table(table)
     elif option == "20":
         get_num_of_sales_per_customer_ids()
     elif option == "21":
@@ -133,7 +133,7 @@ def handle_menu():
                "Get all customer ids",
                "Get all customer ids from table",
                "Get all sales ids for customer ids",
-               "Get all sales ids for customer ids form table",
+               "Get all sales ids for customer ids from table",
                "Get num of sales per customer ids",
                "Get num of sales per customer ids from table"]
 
@@ -571,7 +571,7 @@ def get_all_sales_ids_for_customer_ids():
     return ids
 
 
-def get_all_sales_ids_for_customer_ids_form_table(table):
+def get_all_sales_ids_for_customer_ids_from_table(table):
     """
     Returns a dictionary of (customer_id, sale_ids) where:
         customer_id:
