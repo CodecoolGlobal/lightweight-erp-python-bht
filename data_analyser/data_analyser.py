@@ -150,6 +150,17 @@ def get_the_most_frequent_buyers_names(num=1):
     """
 
     # 5
+    most_sales = sales.get_num_of_sales_per_customer_ids()
+    most_frequent = []
+    for number in range(num):
+        id_ = ''
+        for key, value in most_sales.items():
+            if value == max(most_sales.values()):
+                id_ = key
+        name = crm.get_name_by_id(id_)
+        most_frequent.append((name, max(most_sales.values())))
+        most_sales.pop(id_)
+    return most_frequent
 
 
 def get_the_most_frequent_buyers_ids(num=1):
@@ -166,4 +177,13 @@ def get_the_most_frequent_buyers_ids(num=1):
     """
 
     # 6
-    
+    most_sales = sales.get_num_of_sales_per_customer_ids()
+    most_frequent = []
+    for number in range(num):
+        id_ = ''
+        for key, value in most_sales.items():
+            if value == max(most_sales.values()):
+                id_ = key
+        most_frequent.append((id_, max(most_sales.values())))
+        most_sales.pop(id_)
+    return most_frequent
