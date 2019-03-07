@@ -89,7 +89,7 @@ def show_table(table):
     Returns:
         None
     """
-
+    # 1
     ui.print_table(table, ['id', 'name', 'email',
                            'subscribed'])
 
@@ -104,7 +104,7 @@ def add(table):
     Returns:
         list: Table with a new record
     """
-
+    # 2
     id = common.generate_random(table)
     addnew = ui.get_inputs(
         ['Customer name: ', 'E-mail address: ',
@@ -128,7 +128,7 @@ def remove(table, id_):
     Returns:
         list: Table without specified record.
     """
-
+    # 3
     for index in range(len(table)):
         if table[index][0] == id_:
             table.pop(index)
@@ -148,7 +148,7 @@ def update(table, id_):
     Returns:
         list: table with updated record
     """
-
+    # 4
     for index in range(len(table)):
         if table[index][0] == id_:
             addnew = ui.get_inputs(
@@ -175,7 +175,7 @@ def get_longest_name_id(table):
             string: id of the longest name (if there are more than one, return
                 the last by alphabetical order of the names)
         """
-
+    # 5
     len_of_names = []
     maxi_names = []
     for lines in table:
@@ -202,7 +202,7 @@ def get_subscribed_emails(table):
         Returns:
             list: list of strings (where a string is like "email;name")
         """
-
+    # 6
     subs = []
     printable_list = []
     for line in table:
@@ -212,7 +212,6 @@ def get_subscribed_emails(table):
     ui.print_result(printable_list, "Subscribers' email addresses and their names")
 
     return subs
-    # your code
 
 
 # functions supports data analyser
@@ -230,11 +229,11 @@ def get_name_by_id(id):
     Returns:
         str: the name of the customer
     """
+    # 7
     table = data_manager.get_table_from_file('crm/customers.csv')
     for lines in table:
         if lines[0] == id:
             return lines[1]
-    # your code
 
 
 def get_name_by_id_from_table(table, id):
@@ -248,8 +247,8 @@ def get_name_by_id_from_table(table, id):
     Returns:
         str: the name of the customer
     """
+    # 8
     for lines in table:
         if lines[0] == id:
             ui.print_result(lines[1], 'Name of customer with given ID: ')
             return lines[1]
-    # your code

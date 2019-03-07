@@ -289,7 +289,7 @@ def get_items_sold_between(table, month_from, day_from,
         list: list of lists (the filtered table)
     """
     # 6
-    
+
     filtered_table = []
     from_date = (int(year_from), int(month_from), int(day_from))
     to_date = (int(year_to), int(month_to), int(day_to))
@@ -517,7 +517,7 @@ def get_customer_id_by_sale_id_from_table(table, sale_id):
         if row[0] == sale_id:
             cust_id = row[6]
     if cust_id == '':
-        cust_id = 'None'
+        return None
     ui.print_result(cust_id, 'Customer ID')
     return cust_id
 

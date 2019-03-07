@@ -28,7 +28,6 @@ def start_module():
         None
     """
 
-    # your code
     while True:
         handle_menu()
         try:
@@ -91,8 +90,7 @@ def show_table(table):
     Returns:
         None
     """
-    # your code
-
+    # 1
     games_title_list = ['id', 'title', 'manufacturer', 'price', 'in_stock']
     ui.print_table(table, games_title_list)
 
@@ -108,7 +106,7 @@ def add(table):
         list: Table with a new record
     """
 
-    # your code a \n mehetne a get_inputsba, és egy : is a dupla space helyett
+    # 2
     gen_id = common.generate_random(table)
     input_parameters = ['title', 'manufacturer', 'price', 'in_stock']
     add_line = []
@@ -134,7 +132,7 @@ def remove(table, id_):
         list: Table without specified record.
     """
 
-    # your code
+    # 3
     for index in range(len(table)):
         if table[index][0] == id_:
             table.pop(index)
@@ -155,7 +153,7 @@ def update(table, id_):
         list: table with updated record
     """
 
-    # your code
+    # 4
     for index in range(len(table)):
         if table[index][0] == id_:
             addnew = ui.get_inputs(
@@ -181,7 +179,7 @@ def get_counts_by_manufacturers(table):
          dict: A dictionary with this structure: { [manufacturer] : [count] }
     """
 
-    # your code
+    # 5
     dict1 = {}
     for line in table:
         if line[2] in dict1.keys():
@@ -205,7 +203,7 @@ def get_average_by_manufacturer(table, manufacturer):
          number
     """
 
-    # your code
+    # 6
     count = 0
     divider = 0
     for line in table:

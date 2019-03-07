@@ -26,7 +26,6 @@ def start_module():
         None
     """
 
-    # your code
     while True:
         handle_menu()
         try:
@@ -86,7 +85,7 @@ def show_table(table):
         None
     """
 
-    # your code
+    # 1
     ui.print_table(table, ['id', 'name', 'birth_year'])
 
 
@@ -101,7 +100,7 @@ def add(table):
         list: Table with a new record
     """
 
-    # your code
+    # 2
     id = common.generate_random(table)
     addnew = ui.get_inputs(
         ['name: ', 'birth_year: '],
@@ -124,7 +123,7 @@ def remove(table, id_):
         list: Table without specified record.
     """
 
-    # your code
+    # 3
     for index in range(len(table)):
         if table[index][0] == id_:
             table.pop(index)
@@ -144,7 +143,7 @@ def update(table, id_):
         list: table with updated record
     """
 
-    # your code
+    # 4
     for index in range(len(table)):
         if table[index][0] == id_:
             addnew = ui.get_inputs(
@@ -170,7 +169,7 @@ def get_oldest_person(table):
         list: A list of strings (name or names if there are two more with the same value)
     """
 
-    # your code
+    # 5
     oldest_name = []
     oldest = 2000
     for line in table:
@@ -197,7 +196,7 @@ def get_persons_closest_to_average(table):
         list: list of strings (name or names if there are two more with the same value)
     """
 
-    # your code
+    # 6
     total = 0
     dividor = 0
     for line in table:

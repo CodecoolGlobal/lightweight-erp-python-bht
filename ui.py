@@ -189,7 +189,7 @@ def print_result(result, label):
             if last_tabulator < len(result):
                 print('\t'+string_tabulator)
         print('\t\\'+'-'*(label_lenght+2)+'/')
-    
+
     elif isinstance(result, tuple):
         print('tuple')
         label_lenght = len(str(label))
@@ -206,7 +206,6 @@ def print_result(result, label):
             string_result += '| {0:^{1}} |'.format(item, label_lenght)
             print('\t' + string_result)
         print('\t\\' + '-' * (label_lenght+2) + '/')
-
 
     else:
         print('\n\t>>NOTstr/int/float/list/dictionary/tuple<<')
