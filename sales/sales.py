@@ -103,7 +103,7 @@ def choose():
     elif option == "18":
         get_all_sales_ids_for_customer_ids()
     elif option == "19":
-        get_all_sales_ids_for_customer_ids_form_table(table)
+        get_all_sales_ids_for_customer_ids_from_table(table)
     elif option == "20":
         get_num_of_sales_per_customer_ids()
     elif option == "21":
@@ -133,7 +133,7 @@ def handle_menu():
                "Get all customer ids",
                "Get all customer ids from table",
                "Get all sales ids for customer ids",
-               "Get all sales ids for customer ids form table",
+               "Get all sales ids for customer ids from table",
                "Get num of sales per customer ids",
                "Get num of sales per customer ids from table"]
 
@@ -289,13 +289,13 @@ def get_items_sold_between(table, month_from, day_from,
         list: list of lists (the filtered table)
     """
     # 6
-    
+
     filtered_table = []
     from_date = (int(year_from), int(month_from), int(day_from))
     to_date = (int(year_to), int(month_to), int(day_to))
     for row in table:
         if from_date < (int(row[5]), int(row[3]), int(row[4])) < to_date:
-            filtered_table.append(row)
+            filtered_table.append(row[:6])
     ui.print_result(
         filtered_table,
         'Items sold between ' +
@@ -310,7 +310,7 @@ def get_items_sold_between(table, month_from, day_from,
         str(day_to) +
         '/' +
         str(year_to))
-    for row in table:
+    for row in filtered_table:
         row[5], row[4], row[3], row[2] = int(
             row[5]), int(row[4]), int(row[3]), int(row[2])
     return filtered_table
@@ -340,6 +340,8 @@ def get_title_by_id(id):
     for row in table:
         if row[0] == id:
             result += row[1]
+    if result == '':
+        return None
     return result
 
 
@@ -362,6 +364,8 @@ def get_title_by_id_from_table(table, id):
     for row in table:
         if row[0] == id:
             result += row[1]
+    if result == '':
+        return None
     ui.print_result(result, 'The title of the given ID is')
     return result
 
@@ -513,7 +517,7 @@ def get_customer_id_by_sale_id_from_table(table, sale_id):
         if row[0] == sale_id:
             cust_id = row[6]
     if cust_id == '':
-        cust_id = 'None'
+        return None
     ui.print_result(cust_id, 'Customer ID')
     return cust_id
 
@@ -571,7 +575,7 @@ def get_all_sales_ids_for_customer_ids():
     return ids
 
 
-def get_all_sales_ids_for_customer_ids_form_table(table):
+def get_all_sales_ids_for_customer_ids_from_table(table):
     """
     Returns a dictionary of (customer_id, sale_ids) where:
         customer_id:
@@ -602,13 +606,12 @@ def get_num_of_sales_per_customer_ids():
          dict of (key, value): (customer_id (str), num_of_sales (number))
     """
 
+    # 20
     table = data_manager.get_table_from_file('sales/sales.csv')
     ids = {}
     for row in table:
         ids[row[6]] = ids.get(row[6], 0) + 1
-    ui.print_result(ids, 'Number of sales per customer IDs')
     return ids
-    # 20
 
 
 def get_num_of_sales_per_customer_ids_from_table(table):

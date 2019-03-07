@@ -189,7 +189,7 @@ def print_result(result, label):
             if last_tabulator < len(result):
                 print('\t'+string_tabulator)
         print('\t\\'+'-'*(label_lenght+2)+'/')
-    
+
     elif isinstance(result, tuple):
         print('tuple')
         label_lenght = len(str(label))

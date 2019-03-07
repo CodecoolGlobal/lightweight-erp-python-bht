@@ -84,6 +84,7 @@ def show_table(table):
     Returns:
         None
     """
+    # 1
     ui.print_table(table, ['id', 'month', 'day',
                            'year', 'type', 'amount'])
 
@@ -98,7 +99,7 @@ def add(table):
     Returns:
         list: Table with a new record
     """
-
+    # 2
     id = common.generate_random(table)
     addnew = ui.get_inputs(
         ['month: ',
@@ -125,6 +126,7 @@ def remove(table, id_):
     Returns:
         list: Table without specified record.
     """
+    # 3
     for index in range(len(table)):
         if table[index][0] == id_:
             table.pop(index)
@@ -144,7 +146,7 @@ def update(table, id_):
     Returns:
         list: table with updated record
     """
-
+    # 4
     for row in table:
         if row[0] == id_:
             addnew = ui.get_inputs(
@@ -175,21 +177,21 @@ def which_year_max(table):
         number
     """
 
-    # your code
-    dict1 = {}
+    # 5
+    profit = {}
     for line in table:
-        if line[3] in dict1.keys():
+        if line[3] in profit.keys():
             if line[4] == 'in':
-                dict1[line[3]] += int(line[5])
+                profit[line[3]] += int(line[5])
             elif line[4] == 'out':
-                dict1[line[3]] -= int(line[5])
+                profit[line[3]] -= int(line[5])
         else:
             if line[4] == 'in':
-                dict1[line[3]] = int(line[5])
+                profit[line[3]] = int(line[5])
             elif line[4] == 'out':
-                dict1[line[3]] = -(int(line[5]))
-    for key, value in dict1.items():
-        if value == max(dict1.values()):
+                profit[line[3]] = -(int(line[5]))
+    for key, value in profit.items():
+        if value == max(profit.values()):
             ui.print_result(key, 'The biggest profit was in')
             return int(key)
 
@@ -206,28 +208,27 @@ def avg_amount(table, year):
         number
     """
 
-    # your code
-    dict1 = {}
+    # 6
+    profit = {}
     count = 0
-    # the test runs with a number, while the input is a string
     year = str(year)
     for line in table:
-        if year == line[3] in dict1.keys():
+        if year == line[3] in profit.keys():
             if line[4] == 'in':
-                dict1[line[3]] += int(line[5])
+                profit[line[3]] += int(line[5])
                 count += 1
             elif line[4] == 'out':
-                dict1[line[3]] -= int(line[5])
+                profit[line[3]] -= int(line[5])
                 count += 1
         else:
             if year == line[3]:
                 if line[4] == 'in':
-                    dict1[line[3]] = int(line[5])
+                    profit[line[3]] = int(line[5])
                     count += 1
                 elif line[4] == 'out':
-                    dict1[line[3]] = -(int(line[5]))
+                    profit[line[3]] = -(int(line[5]))
                     count += 1
-    for value in dict1.values():
+    for value in profit.values():
         avg = value / count
         ui.print_result(avg, f'The average profit in {year} is')
         return avg
