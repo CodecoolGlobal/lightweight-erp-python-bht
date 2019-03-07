@@ -295,7 +295,7 @@ def get_items_sold_between(table, month_from, day_from,
     to_date = (int(year_to), int(month_to), int(day_to))
     for row in table:
         if from_date < (int(row[5]), int(row[3]), int(row[4])) < to_date:
-            filtered_table.append(row)
+            filtered_table.append(row[:6])
     ui.print_result(
         filtered_table,
         'Items sold between ' +
@@ -310,7 +310,7 @@ def get_items_sold_between(table, month_from, day_from,
         str(day_to) +
         '/' +
         str(year_to))
-    for row in table:
+    for row in filtered_table:
         row[5], row[4], row[3], row[2] = int(
             row[5]), int(row[4]), int(row[3]), int(row[2])
     return filtered_table
@@ -340,6 +340,8 @@ def get_title_by_id(id):
     for row in table:
         if row[0] == id:
             result += row[1]
+    if result == '':
+        return None
     return result
 
 
@@ -362,6 +364,8 @@ def get_title_by_id_from_table(table, id):
     for row in table:
         if row[0] == id:
             result += row[1]
+    if result == '':
+        return None
     ui.print_result(result, 'The title of the given ID is')
     return result
 
