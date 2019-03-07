@@ -67,7 +67,7 @@ def print_table(table, title_list):
 
 def print_result(result, label):
     if isinstance(result, str):
-        print('string')
+        #print('string')
         label_lenght = len(str(label))
         result_lenght = len(result)
         if label_lenght > result_lenght:
@@ -85,7 +85,7 @@ def print_result(result, label):
         print('\t\\' + '-' * (label_lenght+2) + '/')
 
     elif isinstance(result, int):
-        print('integer')
+        #print('integer')
         label_lenght = len(str(label))
         result_lenght = len(str(result))
         if label_lenght > result_lenght:
@@ -103,7 +103,7 @@ def print_result(result, label):
         print('\t\\' + '-' * (label_lenght+2) + '/')
 
     elif isinstance(result, float):
-        print('float')
+        #print('float')
         label_lenght = len(str(label))
         result_lenght = len(str(result))
         if label_lenght > result_lenght:
@@ -121,7 +121,7 @@ def print_result(result, label):
         print('\t\\' + '-' * (label_lenght+2) + '/')
 
     elif isinstance(result, list):
-        print('list')
+        #print('list')
         label_lenght = len(str(label))
         result_lenght = []
         total_result_lenght = 0
@@ -160,7 +160,7 @@ def print_result(result, label):
         print('\t\\' + '-' * label_lenght + '/')
 
     elif isinstance(result, dict):
-        print('dictionary')
+        #print('dictionary')
         key_lenght = []
         value_lenght = []
         label_lenght = len(str(label))
@@ -191,7 +191,7 @@ def print_result(result, label):
         print('\t\\'+'-'*(label_lenght+2)+'/')
 
     elif isinstance(result, tuple):
-        print('tuple')
+        #print('tuple')
         label_lenght = len(str(label))
         result_lenght = len(result)
         if result_lenght > label_lenght:
